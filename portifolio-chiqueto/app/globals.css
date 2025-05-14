@@ -1,9 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Shrikhand&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-head: "Shrikhand", "serif";
+  --font-body: "Poppins", "sans-serif";
+
+  --color-main-100: oklch(0.97 0.0161 95.22);
+  --color-main-200: oklch(0.97 0.0338 92.26);
+  --color-main-300: oklch(0.85 0.079 93.13);
+  --color-main-400: oklch(0.72 0.0881 92.09);
+  --color-main-500: oklch(0.63 0.0938 91.33);
+  --color-main-600: oklch(0.36 0.0426 102.81);
+  --color-secondary-100: oklch(0.77 0.0462 83.85);
+  --color-secondary-200: oklch(0.47 0.0236 84.56);
+  --color-secondary-300: oklch(0.37 0.0641 91.27);
+  --color-secondary-400: oklch(0.34 0.024 94.01);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -45,10 +59,10 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: oklch(0.97 0.0338 92.26);
   --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
+  --card-foreground: oklch(0.72 0.0881 92.09);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.141 0.005 285.823);
   --primary: oklch(0.21 0.006 285.885);
@@ -81,7 +95,7 @@
 .dark {
   --background: oklch(0.141 0.005 285.823);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.21 0.006 285.885);
+  --card: oklch(0 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.21 0.006 285.885);
   --popover-foreground: oklch(0.985 0 0);

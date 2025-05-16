@@ -17,7 +17,7 @@ const Presentation = () => {
                     alt={"Luís Felipe Mozer Chiqueto"}
                 />
             </div>
-            <h1 className="text-2xl font-inter font-bold">Luís Felipe Mozer Chiqueto</h1>
+            <h1 className="text-2xl font-inter font-bold text-center">Luís Felipe Mozer Chiqueto</h1>
             <Badge variant={"secondary"} className="p-2 border border-solid border-card-border font-inter text-base">
                 Web | Mobile Developer
             </Badge>
@@ -39,36 +39,33 @@ const Presentation = () => {
             </div>
 
             <div className="p-4 bg-tertiary rounded-md">
-                <h4 className="mb-4 text-sm font-medium leading-none">Tags</h4>
-                <>
-                    <div className="text-sm flex flex-row justify-between items-center gap-2">
-                        <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
-                            <Smartphone size={12} className="inline" />
-                        </div>
-                        <p className="flex-1 font-inter font-medium text-sm">+55 (16) 99968-6044</p>
+                <div className="text-sm flex flex-row justify-between items-center gap-2">
+                    <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
+                        <Smartphone size={12} className="inline" />
                     </div>
-                    <Separator className="my-2" />
-                    <div className="text-sm flex flex-row justify-between items-center gap-2">
-                        <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
-                            <Mail size={12} className="inline" />
-                        </div>
-                        <p className="flex-1 font-inter font-medium text-sm">lfchiqueto@gmail.com</p>
+                    <p className="flex-1 font-inter font-medium text-sm">+55 (16) 99968-6044</p>
+                </div>
+                <Separator className="my-2" />
+                <div className="text-sm flex flex-row justify-between items-center gap-2">
+                    <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
+                        <Mail size={12} className="inline" />
                     </div>
-                    <Separator className="my-2" />
-                    <div className="text-sm flex flex-row justify-between items-center gap-2">
-                        <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
-                            <MapPin size={12} className="inline" />
-                        </div>
-                        <p className="flex-1 font-inter font-medium text-sm">São Joaquim da Barra, SP</p>
+                    <p className="flex-1 font-inter font-medium text-sm">lfchiqueto@gmail.com</p>
+                </div>
+                <Separator className="my-2" />
+                <div className="text-sm flex flex-row justify-between items-center gap-2">
+                    <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
+                        <MapPin size={12} className="inline" />
                     </div>
-                    <Separator className="my-2" />
-                    <div className="text-sm flex flex-row justify-between items-center gap-2">
-                        <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
-                            <Calendar size={12} className="inline" />
-                        </div>
-                        <p className="flex-1 font-inter font-medium text-sm">08, MAR. 2005</p>
+                    <p className="flex-1 font-inter font-medium text-sm">São Joaquim da Barra, SP</p>
+                </div>
+                <Separator className="my-2" />
+                <div className="text-sm flex flex-row justify-between items-center gap-2">
+                    <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
+                        <Calendar size={12} className="inline" />
                     </div>
-                </>
+                    <p className="flex-1 font-inter font-medium text-sm">08, MAR. 2005</p>
+                </div>
 
             </div>
 

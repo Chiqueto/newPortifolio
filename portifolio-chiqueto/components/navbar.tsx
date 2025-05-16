@@ -15,8 +15,8 @@ const Navbar = () => {
 
     }
 
-    return (<nav>
-        <Card className="flex flex-row items-center justify-between px-4 py-2">
+    return (<nav className="md:mt-64">
+        <Card className="flex flex-row md:flex-col items-center justify-between px-4 py-2">
             <Button variant={isSelectedSection === "home" ? "default" : "secondary"} onClick={() => handleSectionChange("home")} className="flex flex-col gap-2 md:h-full">
                 <FaUserLarge
                     className="text-card-foreground"

@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="">
       <Header />
-      <div className="mx-4 md:mt-24 flex flex-col gap-4" >
+      <div className="mx-4 md:mt-24 flex flex-col gap-4 md:flex-row" >
         <Presentation />
         <Navbar />
       </div>

@@ -7,8 +7,8 @@ import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 
 const Presentation = () => {
-    return (<section className="mt-36 max-w-sm">
-        <Card className="flex flex-col items-center justify-center">
+    return (<section className="mt-36 max-w-sm ">
+        <Card className="flex flex-col items-center justify-center px-2">
             <div className="relative max-h-[200px] min-h-[200px] min-w-[200px] max-w-[200px] mx-auto flex items-center justify-center mt-[-80px]">
                 <Image
                     src={"/profile_pic_cartoon.png"}

@@ -1,12 +1,13 @@
 import Image from "next/image";
 import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
-import { GithubIcon, Instagram, LinkedinIcon, Smartphone } from "lucide-react";
+import { Calendar, GithubIcon, Instagram, LinkedinIcon, Mail, MapPin, Smartphone } from "lucide-react";
 import Link from "next/link";
 import { Separator } from "./ui/separator";
+import { Button } from "./ui/button";
 
 const Presentation = () => {
-    return (<section className="mt-36">
+    return (<section className="mt-36 max-w-sm">
         <Card className="flex flex-col items-center justify-center">
             <div className="relative max-h-[200px] min-h-[200px] min-w-[200px] max-w-[200px] mx-auto flex items-center justify-center mt-[-80px]">
                 <Image
@@ -42,14 +43,38 @@ const Presentation = () => {
                 <>
                     <div className="text-sm flex flex-row justify-between items-center gap-2">
                         <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
-                            <Smartphone size={24} className="inline" />
+                            <Smartphone size={12} className="inline" />
                         </div>
                         <p className="flex-1 font-inter font-medium text-sm">+55 (16) 99968-6044</p>
                     </div>
                     <Separator className="my-2" />
+                    <div className="text-sm flex flex-row justify-between items-center gap-2">
+                        <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
+                            <Mail size={12} className="inline" />
+                        </div>
+                        <p className="flex-1 font-inter font-medium text-sm">lfchiqueto@gmail.com</p>
+                    </div>
+                    <Separator className="my-2" />
+                    <div className="text-sm flex flex-row justify-between items-center gap-2">
+                        <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
+                            <MapPin size={12} className="inline" />
+                        </div>
+                        <p className="flex-1 font-inter font-medium text-sm">São Joaquim da Barra, SP</p>
+                    </div>
+                    <Separator className="my-2" />
+                    <div className="text-sm flex flex-row justify-between items-center gap-2">
+                        <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
+                            <Calendar size={12} className="inline" />
+                        </div>
+                        <p className="flex-1 font-inter font-medium text-sm">08, MAR. 2005</p>
+                    </div>
                 </>
 
             </div>
+
+            <Button variant={"default"} className="border-2 border-solid border-[var(--card-border)] ">
+                Meu Curriculo
+            </Button>
 
         </Card>
     </section >);

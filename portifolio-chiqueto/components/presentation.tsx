@@ -13,12 +13,12 @@ const Presentation = () => {
                 <Image
                     src={"/profile_pic_cartoon.png"}
                     fill
-                    className="rounded-lg object-cover border-4 border-solid border-[var(--card-border)]"
+                    className="rounded-lg object-cover border-4 border-solid border-card-border"
                     alt={"Luís Felipe Mozer Chiqueto"}
                 />
             </div>
             <h1 className="text-2xl font-inter font-bold">Luís Felipe Mozer Chiqueto</h1>
-            <Badge variant={"secondary"} className="p-2 border border-solid border-[var(--card-border)] font-inter text-base">
+            <Badge variant={"secondary"} className="p-2 border border-solid border-card-border font-inter text-base">
                 Web | Mobile Developer
             </Badge>
             <div className="flex flex-row gap-2 items-center justify-center">
@@ -72,8 +72,13 @@ const Presentation = () => {
 
             </div>
 
-            <Button variant={"default"} className="border-2 border-solid border-[var(--card-border)] ">
-                Meu Curriculo
+            <Button variant={"default"} className="border-2 border-solid border-card-border font-bold" asChild>
+                <a href="https://drive.google.com/file/d/1_UKDOsvsPBOBX-9TounuUTzAdqDy5WIE/view?usp=sharing"
+                    download={"Luis Felipe Chiqueto - Curriculo.pdf"}
+                    target="_blank">
+                    Meu Curriculo
+                </a>
+
             </Button>
 
         </Card>

@@ -1,3 +1,5 @@
+import { Card } from "../ui/card";
+import Image from "next/image";
 const Home = () => {
     return (
         <section className="text-left ">
@@ -12,6 +14,26 @@ const Home = () => {
                 🤝 Como profissional, <strong>valorizo o trabalho em equipe</strong>, pois acredito que a troca de ideias e a colaboração são essenciais para o sucesso de qualquer projeto. <strong>Meu objetivo é crescer como Desenvolvedor Full Stack</strong>, combinando habilidades de front-end e back-end para criar soluções robustas e eficientes.<br /><br />
             </p>
             <h2 className="font-body font-bold text-xl">O quê eu faço</h2>
+            <div>
+                <Card className="flex flex-row p-0 m-0 bg-amber-700">
+                    <div className="flex flex-row gap-2 bg-card/95">
+                        <div className="relative min-h-[179px] min-w-[116px] max-w-[116px] mx-auto flex items-start justify-start ">
+
+                            <Image
+                                src={"/frontend.png"}
+                                fill
+                                className="object-cover rounded-l-lg"
+                                alt={"Luís Felipe Mozer Chiqueto"} />
+                        </div>
+                        <div className="flex flex-col gap-2 items-start">
+                            <h3 className="font-inter font-bold text-base mt-1">
+                                Desenvolvimento Front-end</h3>
+                            <p className="text-sm text-card-foreground/60">With a robust proficiency in
+                                React.js. I excel at transforming design concepts into dynamic, user-friendly websites.</p>
+                        </div>
+                    </div>
+                </Card>
+            </div>
         </section>);
 }
 

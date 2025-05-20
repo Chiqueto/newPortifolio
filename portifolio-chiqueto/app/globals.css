@@ -48,6 +48,7 @@
   --color-secondary: var(--secondary);
   --color-tertiary: var(--tertiary);
   --color-fourth: var(--fourth);
+  --color-fifth: var(--fifth);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
   --color-popover-foreground: var(--popover-foreground);
@@ -59,9 +60,11 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  
 }
 
 :root {
+  
   --radius: 0.625rem;
   --background: oklch(0.97 0.0338 92.26);
   --foreground: oklch(1 0 0);
@@ -76,6 +79,7 @@
   --secondary-foreground: oklch(0 0 0);
   --tertiary: oklch(0.97 0.0161 95.22);
   --fourth: oklch(0.63 0.0938 91.33);
+  --fifth: oklch(0.9741 0.0097 17.32);
   --muted: oklch(0.967 0.001 286.375);
   --muted-foreground: oklch(0.552 0.016 285.938);
   --accent: oklch(0.967 0.001 286.375);
@@ -113,6 +117,7 @@
   --secondary-foreground: oklch(0.91 0.0129 17.46);
   --tertiary: oklch(0.28 0.018 93.32);
   --fourth: oklch(0.55 0.0705 91.84);
+  --fifth: oklch(0.4664 0.0236 84.56);
   --muted: oklch(0.274 0.006 286.033);
   --muted-foreground: oklch(0.705 0.015 286.067);
   --accent: oklch(0.274 0.006 286.033);

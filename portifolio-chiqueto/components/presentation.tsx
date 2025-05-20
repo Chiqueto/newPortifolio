@@ -17,7 +17,7 @@ const Presentation = () => {
                     alt={"Luís Felipe Mozer Chiqueto"}
                 />
             </div>
-            <h1 className="text-2xl font-inter font-bold text-center">Luís Felipe Mozer Chiqueto</h1>
+            <h1 className="lg:text-2xl text-lg md:text-lg font-inter font-bold text-center">Luís Felipe Mozer Chiqueto</h1>
             <Badge variant={"secondary"} className="p-2 border border-solid border-card-border font-inter text-base">
                 Web | Mobile Developer
             </Badge>

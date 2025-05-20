@@ -1,5 +1,4 @@
-import { Card } from "../ui/card";
-import Image from "next/image";
+import WhatIDoCard from "../what-i-do-card";
 const Home = () => {
     return (
         <section className="text-left ">
@@ -14,25 +13,11 @@ const Home = () => {
                 🤝 Como profissional, <strong>valorizo o trabalho em equipe</strong>, pois acredito que a troca de ideias e a colaboração são essenciais para o sucesso de qualquer projeto. <strong>Meu objetivo é crescer como Desenvolvedor Full Stack</strong>, combinando habilidades de front-end e back-end para criar soluções robustas e eficientes.<br /><br />
             </p>
             <h2 className="font-body font-bold text-xl">O quê eu faço</h2>
-            <div>
-                <Card className="flex flex-row p-0 m-0 bg-amber-700">
-                    <div className="flex flex-row gap-2 bg-card/95">
-                        <div className="relative min-h-[179px] min-w-[116px] max-w-[116px] mx-auto flex items-start justify-start ">
-
-                            <Image
-                                src={"/frontend.png"}
-                                fill
-                                className="object-cover rounded-l-lg"
-                                alt={"Luís Felipe Mozer Chiqueto"} />
-                        </div>
-                        <div className="flex flex-col gap-2 items-start">
-                            <h3 className="font-inter font-bold text-base mt-1">
-                                Desenvolvimento Front-end</h3>
-                            <p className="text-sm text-card-foreground/60">With a robust proficiency in
-                                React.js. I excel at transforming design concepts into dynamic, user-friendly websites.</p>
-                        </div>
-                    </div>
-                </Card>
+            <div className="my-2 grid grid-cols-1 gap-4 xl:grid-cols-2">
+                <WhatIDoCard title="💻 Web Front-End Development" description="Com foco em React.js, desenvolvo interfaces dinâmicas, responsivas e voltadas para a experiência do usuário. Transformo ideias em interfaces modernas e funcionais, com atenção a performance e usabilidade." image="/frontend-card.png" />
+                <WhatIDoCard title="⚙️ Back-End Development" description="Tenho experiência prática com Node.js, Express.js e Java (Spring Boot) para criação de APIs e sistemas robustos. Utilizo PostgreSQL e MongoDB para estruturar e gerenciar dados de forma eficiente em aplicações reais." image="/backend-card.png" />
+                <WhatIDoCard title="📱 Mobile App Development" description="Estou iniciando no desenvolvimento mobile com React Native e explorando Flutter. Busco construir aplicações multiplataforma com foco em performance, integração com backend e uma ótima experiência de uso." image="/mobile-card.png" />
+                <WhatIDoCard title="🧠 UI/UX Designing" description="Ainda em aprendizado, estou desenvolvendo meu olhar para UI/UX, buscando criar interfaces intuitivas e visualmente agradáveis, sempre focando na melhor experiência para o usuário final." image="/UiUx-card.png" />
             </div>
         </section>);
 }

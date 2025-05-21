@@ -4,16 +4,12 @@ import Header from "@/components/header";
 import MainContent from "@/components/main-content";
 import Navbar from "@/components/navbar";
 import Presentation from "@/components/presentation";
-import { createContext, useContext, useState } from "react";
+import { useState } from "react";
+import { TabContext } from "@/hooks/useTab";
 
 
-type TabContextType = {
-  selectedTab: string;
-  setSelectedTab: (tab: string) => void;
-};
 
 
-const TabContext = createContext<TabContextType | undefined>(undefined);
 
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState("home");
@@ -34,8 +30,4 @@ export default function Home() {
   );
 }
 
-export const useTab = () => {
-  const context = useContext(TabContext);
-  if (!context) throw new Error("useTab deve ser usado dentro de TabProvider");
-  return context;
-};
+

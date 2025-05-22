@@ -5,7 +5,7 @@ import { FaLaptopCode, FaUserLarge } from "react-icons/fa6";
 import { BsViewList } from "react-icons/bs";
 import { AiTwotoneSecurityScan } from "react-icons/ai";
 import { RiContactsBook3Line } from "react-icons/ri";
-import { useTab } from "@/app/page";
+import { useTab } from "@/hooks/useTab";
 
 
 

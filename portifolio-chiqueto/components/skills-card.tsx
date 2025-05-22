@@ -1,14 +1,19 @@
-import { DiReact } from "react-icons/di";
 import { Card } from "./ui/card";
+import { ElementType } from "react";
 
-const SkillsCard = () => {
+interface SkillsCardProps {
+    name: string;
+    icon: ElementType;
+    color: string;
+}
+
+const SkillsCard = ({ name, icon: Icon, color }: SkillsCardProps) => {
     return (
-        <div className="flex flex-col gap-1 text-center">
-            <Card className="p-2 text-center mx-auto">
-                <DiReact
-                    size={40}
-                    className="text-cyan-500 hover:text-zinc-50 transition-transform transform duration-300 ease-in-out" />
-            </Card><h4 className="font-mono text-base font-medium">React</h4>
+        <div className="flex flex-col gap-1 text-center w-24 h-28">
+            <Card className="p-2 text-center mx-auto shadow-[0_0_8px_2px] hover:shadow-[0_0_8px_4px] shadow-primary">
+                <Icon size={40} className={color} />
+
+            </Card><h4 className="font-mono text-base font-medium w-full break-words">{name}</h4>
         </div>
     )
 

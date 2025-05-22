@@ -60,14 +60,12 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  
 }
 
 :root {
-  
   --radius: 0.625rem;
   --background: oklch(0.97 0.0338 92.26);
-  --foreground: oklch(1 0 0);
+  --foreground: oklch(0 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0 0 0);
   --card-border: oklch(0.72 0.0881 92.09);

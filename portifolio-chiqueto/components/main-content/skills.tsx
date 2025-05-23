@@ -1,6 +1,6 @@
 import { DiGit, DiGithubBadge, DiJavascript, DiReact } from "react-icons/di";
 import SkillsCard from "../skills-card";
-import { SiExpress, SiGithubactions, SiInsomnia, SiMongodb, SiPostman, SiSpringboot, SiSwagger, SiTypescript } from "react-icons/si";
+import { SiExpress, SiInsomnia, SiMongodb, SiPostman, SiSpringboot, SiSwagger, SiTypescript } from "react-icons/si";
 import { FaNodeJs } from "react-icons/fa";
 import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
 import { BiLogoPostgresql } from "react-icons/bi";
@@ -32,7 +32,7 @@ const Skills = () => {
                 <SkillsCard name="Figma" icon={PiFigmaLogoFill} color="text-foreground" />
                 <SkillsCard name="Git" icon={DiGit} color="text-red-500" />
                 <SkillsCard name="Github" icon={DiGithubBadge} color="text-foreground" />
-                <SkillsCard name="Github Actions" icon={SiGithubactions} color="text-blue-500" />
+                {/* <SkillsCard name="Github Actions" icon={SiGithubactions} color="text-blue-500" /> */}
                 <SkillsCard name="Postman" icon={SiPostman} color="text-orange-500" />
                 <SkillsCard name="Insomnia" icon={SiInsomnia} color="text-purple-500" />
                 <SkillsCard name="Swagger" icon={SiSwagger} color="text-lime-500" />

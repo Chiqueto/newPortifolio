@@ -5,6 +5,7 @@ import Experience from "./main-content/experience";
 import Home from "./main-content/home";
 import Skills from "./main-content/skills";
 import { Card } from "./ui/card";
+import Projects from "./main-content/projects";
 
 const MainContent = () => {
     const { selectedTab } = useTab();
@@ -14,6 +15,7 @@ const MainContent = () => {
                 {selectedTab === "home" && (<Home />)}
                 {selectedTab === "experience" && (<Experience />)}
                 {selectedTab === "skills" && (<Skills />)}
+                {selectedTab === "projects" && (<Projects />)}
             </Card>
 
         </main>);

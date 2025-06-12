@@ -22,12 +22,13 @@ const ProjectCard = ({ alt, imgUrl, title, githubLink, linkTo, linkedinLink }: P
                 </div>
                 <h3 className="font-bold font-body text-lg">{title}</h3>
                 <div className="flex items-center gap-2 text-sm">
-                    <Link href={linkTo ? linkTo : "#"}>{linkTo && < FaLink size={24} />}</Link>
-                    <h4>{linkTo ? "Clique para acessar!" : "Não há link de acesso..."}</h4>
+                    <Link href={linkTo ? linkTo : "#"} target="_blank" className="flex gap-3 justify-center align-text-bottom">{linkTo && < FaLink size={24} />}
+                        <h4>{linkTo ? "Clique para acessar!" : "Não há link de acesso..."}</h4>
+                    </Link>
                 </div>
                 <div className="flex items-center justify-end gap-2 text-sm">
-                    {githubLink && <Link href={githubLink}><FaGithub size={24} /></Link>}
-                    {linkedinLink && <Link href={linkedinLink}><FaLinkedin size={24} /></Link>}
+                    {githubLink && <Link href={githubLink} target="_blank"><FaGithub size={24} /></Link>}
+                    {linkedinLink && <Link href={linkedinLink} target="_blank"><FaLinkedin size={24} /></Link>}
                 </div>
 
 

@@ -70,7 +70,7 @@ const Presentation = () => {
             </div>
 
             <Button variant={"default"} className="border-2 border-solid border-card-border font-bold" asChild>
-                <a href="https://drive.google.com/file/d/1_UKDOsvsPBOBX-9TounuUTzAdqDy5WIE/view?usp=sharing"
+                <a href="https://drive.google.com/file/d/114hBW2F36PPlsg1fDyra0fGjSbptyTex/view?usp=sharing"
                     download={"Luis Felipe Chiqueto - Curriculo.pdf"}
                     target="_blank">
                     Meu Curriculo

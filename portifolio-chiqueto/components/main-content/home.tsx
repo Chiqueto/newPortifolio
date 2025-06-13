@@ -14,10 +14,10 @@ const Home = () => {
             </p>
             <h2 className="font-body font-bold text-xl">O quê eu faço</h2>
             <div className="my-2 grid grid-cols-1 gap-4 xl:grid-cols-2">
-                <WhatIDoCard title="💻 Web Front-End Development" description="Com foco em React.js, desenvolvo interfaces dinâmicas, responsivas e voltadas para a experiência do usuário. Transformo ideias em interfaces modernas e funcionais, com atenção a performance e usabilidade." image="/frontend-card.png" />
-                <WhatIDoCard title="⚙️ Back-End Development" description="Tenho experiência prática com Node.js, Express.js e Java (Spring Boot) para criação de APIs e sistemas robustos. Utilizo PostgreSQL e MongoDB para estruturar e gerenciar dados de forma eficiente em aplicações reais." image="/backend-card.png" />
-                <WhatIDoCard title="📱 Mobile App Development" description="Estou iniciando no desenvolvimento mobile com React Native e explorando Flutter. Busco construir aplicações multiplataforma com foco em performance, integração com backend e uma ótima experiência de uso." image="/mobile-card.png" />
-                <WhatIDoCard title="🧠 UI/UX Designing" description="Ainda em aprendizado, estou desenvolvendo meu olhar para UI/UX, buscando criar interfaces intuitivas e visualmente agradáveis, sempre focando na melhor experiência para o usuário final." image="/UiUx-card.png" />
+                <WhatIDoCard title="💻 Web Front-End Development" description="Com foco em React.js, desenvolvo interfaces dinâmicas, responsivas e voltadas para a experiência do usuário. Transformo ideias em interfaces modernas e funcionais, com atenção a performance e usabilidade." image="/front-end.png" />
+                <WhatIDoCard title="⚙️ Back-End Development" description="Tenho experiência prática com Node.js, Express.js e Java (Spring Boot) para criação de APIs e sistemas robustos. Utilizo PostgreSQL e MongoDB para estruturar e gerenciar dados de forma eficiente em aplicações reais." image="/backend.png" />
+                <WhatIDoCard title="📱 Mobile App Development" description="Estou iniciando no desenvolvimento mobile com React Native e explorando Flutter. Busco construir aplicações multiplataforma com foco em performance, integração com backend e uma ótima experiência de uso." image="/mobile.png" />
+                <WhatIDoCard title="🧠 UI/UX Designing" description="Ainda em aprendizado, estou desenvolvendo meu olhar para UI/UX, buscando criar interfaces intuitivas e visualmente agradáveis, sempre focando na melhor experiência para o usuário final." image="/design.png" />
             </div>
         </section>);
 }

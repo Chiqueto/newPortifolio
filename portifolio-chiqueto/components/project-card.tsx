@@ -15,7 +15,7 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ alt, imgUrl, title, githubLink, linkTo, linkedinLink }: ProjectCardProps) => {
     return (
-        <Card>
+        <Card className="hover:scale-105 transition-transform duration-200 ease-in-out hover:shadow-lg hover:shadow-primary/30">
             <CardContent className="space-y-3">
                 <div className="relative w-full h-52 rounded-2xl border-2 border-foreground">
                     <Image alt={alt} src={imgUrl} fill className="object-cover rounded-xl" />

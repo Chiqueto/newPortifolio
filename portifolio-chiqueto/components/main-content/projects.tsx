@@ -21,7 +21,10 @@ const Projects = () => {
 
                 <ProjectCard imgUrl="/fsw.png" alt="FSW Barber" title="FSW Barber" githubLink="https://github.com/Chiqueto/fsw-barber" />
 
-                <ProjectCard imgUrl="/doutor_agenda.png" alt="Doutor Agenda" title="Doutor Agenda" githubLink="https://github.com/Chiqueto/doutor-agenda" />
+                <ProjectCard imgUrl="/doutor_agenda.png" alt="Doutor " title="Doutor Agenda" githubLink="https://github.com/Chiqueto/doutor-agenda" />
+
+                <ProjectCard imgUrl="/LOGIN-ADMIN.svg" alt="Class Line" title="Class Line - Backend" linkedinLink="https://www.linkedin.com/posts/luis-felipe-chiqueto_java-springboot-desenvolvimentosoftware-activity-7345402576034484224-eg0z?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD_j2AABvFYKIkdkXbpENQXLtr_YU8_iAaU" linkTo="https://classline-backend.onrender.com/swagger-ui/index.html" githubLink="https://github.com/Chiqueto/ClassLine-Backend" />
+
             </div>
         </section>);
 }

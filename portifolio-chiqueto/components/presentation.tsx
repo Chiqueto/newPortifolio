@@ -10,22 +10,35 @@ const Presentation = () => {
     return (
         <section className="mt-36 max-w-sm ">
             <Card className="flex flex-col items-center justify-center px-2">
-                {/* Adicione a classe "group" ao container da imagem */}
-                <div className="group relative max-h-[200px] min-h-[200px] min-w-[200px] max-w-[200px] mx-auto flex items-center justify-center mt-[-80px]">
-                    {/* Imagem 1: Padrão, desaparece no hover */}
-                    <Image
-                        src={"/profile_pic_cartoon.png"}
-                        fill
-                        className="rounded-lg object-cover border-4 border-solid border-card-border transition-opacity duration-500 ease-in-out group-hover:opacity-0"
-                        alt={"Luís Felipe Mozer Chiqueto - Cartoon"}
-                    />
-                    {/* Imagem 2: Escondida, aparece no hover */}
-                    <Image
-                        src={"https://github.com/Chiqueto.png"}
-                        fill
-                        className="rounded-lg object-cover border-4 border-solid border-card-border opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
-                        alt={"Luís Felipe Mozer Chiqueto - GitHub"}
-                    />
+                <div className="group relative h-[200px] w-[200px] mx-auto mt-[-80px] [perspective:1000px]">
+                    {/* Container que aplica a animação de rotação */}
+                    <div
+                        className="relative w-full h-full duration-1000 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]"
+                    >
+                        {/* Face Frontal (visível por padrão) */}
+                        <div
+                            className="absolute w-full h-full rounded-lg border-4 border-solid border-card-border [backface-visibility:hidden]"
+                        >
+                            <Image
+                                src={"/profile_pic_cartoon.png"}
+                                fill
+                                className="object-cover rounded-lg" // Adicionado rounded-lg aqui também para a imagem se ajustar à borda
+                                alt={"Luís Felipe Mozer Chiqueto - Cartoon"}
+                            />
+                        </div>
+
+                        {/* Face Traseira (visível no hover) */}
+                        <div
+                            className="absolute w-full h-full rounded-lg border-4 border-solid border-card-border [transform:rotateY(180deg)] [backface-visibility:hidden]"
+                        >
+                            <Image
+                                src={"https://github.com/Chiqueto.png"}
+                                fill
+                                className="object-cover rounded-lg" // Adicionado rounded-lg aqui também
+                                alt={"Luís Felipe Mozer Chiqueto - GitHub"}
+                            />
+                        </div>
+                    </div>
                 </div>
                 <h1 className="lg:text-2xl text-lg md:text-lg font-inter font-bold text-center">Luís Felipe Mozer Chiqueto</h1>
                 <Badge variant={"secondary"} className="p-2 border border-solid border-card-border font-inter text-base">

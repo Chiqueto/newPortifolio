@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter, Poppins, Shrikhand } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner"
+import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,22 +39,22 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/favicon.ico",
+        url: "/portifolioIcon92.png",
         sizes: "any",
       },
       {
-        url: "/favicon.ico",
+        url: "/portifolioIcon.png",
         sizes: "16x16",
         type: "image/x-icon",
       },
       {
-        url: "/favicon.ico",
+        url: "/portifolioIcon32.png",
         sizes: "32x32",
         type: "image/x-icon",
       },
     ],
     apple: {
-      url: "/favicon.ico",
+      url: "/portifolioIcon92.png",
       sizes: "180x180",
       type: "image/x-icon",
     },
@@ -79,6 +80,7 @@ export default function RootLayout({
         >
           {children}
           <Toaster richColors />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html >

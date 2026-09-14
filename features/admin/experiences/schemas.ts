@@ -3,9 +3,9 @@ import { z } from "zod"
 export const experienceSchema = z.object({
   company: z.string().min(1, "Empresa é obrigatória"),
   role: z.string().min(1, "Cargo é obrigatório"),
-  description: z.string().optional(),
+  description: z.string().nullable().optional(),
   start_date: z.string().min(1, "Data de início é obrigatória"),
-  end_date: z.string().optional().or(z.literal("")),
+  end_date: z.string().nullable().optional(),
   current: z.boolean().default(false),
   sort_order: z.number().default(0),
 })

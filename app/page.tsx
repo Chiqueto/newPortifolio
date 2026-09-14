@@ -1,33 +1,50 @@
-'use client';
-
 import Header from "@/components/header";
 import MainContent from "@/components/main-content";
 import Navbar from "@/components/navbar";
 import Presentation from "@/components/presentation";
-import { useState } from "react";
-import { TabContext } from "@/hooks/useTab";
+import { TabProvider } from "@/components/providers/tab-provider";
+import { 
+  getPublicProfile, 
+  getPublicProjects, 
+  getPublicExperiences, 
+  getPublicEducation, 
+  getPublicTechnologies 
+} from "@/features/public/data";
 
-
-
-
-
-export default function Home() {
-  const [selectedTab, setSelectedTab] = useState("home");
+export default async function Home() {
+  const [profile, projects, experiences, education, technologies] = await Promise.all([
+    getPublicProfile(),
+    getPublicProjects(),
+    getPublicExperiences(),
+    getPublicEducation(),
+    getPublicTechnologies(),
+  ]);
 
   return (
-    <TabContext.Provider value={{ selectedTab, setSelectedTab }}>
+    <TabProvider>
       <div className="">
         <Header />
         <div className="mx-4 flex flex-col items-center justify-between gap-4 md:flex-row md:items-start" >
-          <Presentation />
-          <div className="hidden md:block flex-1"><MainContent /></div>
+          <Presentation profile={profile} />
+          <div className="hidden md:block flex-1">
+            <MainContent 
+              projects={projects} 
+              experiences={experiences} 
+              education={education} 
+              technologies={technologies} 
+            />
+          </div>
           <Navbar />
-          <div className="md:hidden"><MainContent /></div>
+          <div className="md:hidden">
+            <MainContent 
+              projects={projects} 
+              experiences={experiences} 
+              education={education} 
+              technologies={technologies} 
+            />
+          </div>
         </div>
-
       </div>
-    </TabContext.Provider>
+    </TabProvider>
   );
 }
-
-

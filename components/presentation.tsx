@@ -6,103 +6,121 @@ import Link from "next/link";
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 
-const Presentation = () => {
+export default function Presentation({ profile }: { profile: any }) {
+    if (!profile) return null;
+
+    const birthDateStr = profile.birth_date ? new Date(profile.birth_date).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase() : "N/A";
+
     return (
         <section className="mt-36 max-w-sm ">
-            <Card className="flex flex-col items-center justify-center px-2">
+            <Card className="flex flex-col items-center justify-center px-2 pb-6">
                 <div className="group relative h-[200px] w-[200px] mx-auto mt-[-80px] [perspective:1000px]">
-                    {/* Container que aplica a animação de rotação */}
                     <div
                         className="relative w-full h-full duration-1000 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]"
                     >
-                        {/* Face Frontal (visível por padrão) */}
                         <div
                             className="absolute w-full h-full rounded-lg border-4 border-solid border-card-border [backface-visibility:hidden]"
                         >
                             <Image
-                                src={"/profile_pic_cartoon.png"}
+                                src={profile.avatar_url || "/profile_pic_cartoon.png"}
                                 fill
-                                className="object-cover rounded-lg" // Adicionado rounded-lg aqui também para a imagem se ajustar à borda
-                                alt={"Luís Felipe Mozer Chiqueto - Cartoon"}
+                                className="object-cover rounded-lg"
+                                alt={profile.name}
                             />
                         </div>
 
-                        {/* Face Traseira (visível no hover) */}
                         <div
                             className="absolute w-full h-full rounded-lg border-4 border-solid border-card-border [transform:rotateY(180deg)] [backface-visibility:hidden]"
                         >
                             <Image
-                                src={"https://github.com/Chiqueto.png"}
+                                src={profile.github_url ? `${profile.github_url}.png` : "/profile_pic_cartoon.png"}
                                 fill
-                                className="object-cover rounded-lg" // Adicionado rounded-lg aqui também
-                                alt={"Luís Felipe Mozer Chiqueto - GitHub"}
+                                className="object-cover rounded-lg"
+                                alt={`${profile.name} - GitHub`}
                             />
                         </div>
                     </div>
                 </div>
-                <h1 className="lg:text-2xl text-lg md:text-lg font-inter font-bold text-center">Luís Felipe Mozer Chiqueto</h1>
-                <Badge variant={"secondary"} className="p-2 border border-solid border-card-border font-inter text-base">
-                    Web | Mobile Developer
-                </Badge>
-                <div className="flex flex-row gap-2 items-center justify-center">
+                <h1 className="lg:text-2xl text-lg md:text-lg font-inter font-bold text-center mt-4">{profile.name}</h1>
+                
+                {profile.headline && (
+                    <Badge variant={"secondary"} className="p-2 border border-solid border-card-border font-inter text-base mt-2">
+                        {profile.headline}
+                    </Badge>
+                )}
+                
+                <div className="flex flex-row gap-2 items-center justify-center mt-4">
+                    {profile.instagram_url && (
+                        <Link href={profile.instagram_url} target="_blank">
+                            <Instagram size={32} className="p-1 border-2 border-solid border-[#E77975] rounded-sm text-[#E77975] cursor-pointer" />
+                        </Link>
+                    )}
 
-                    <Link href={"https://www.instagram.com/lfchiqueto?igsh=MXhxcWV3c2U1Nm9meg=="} target="_blank">
-                        <Instagram size={32} className="p-1 border-2 border-solid border-[#E77975] rounded-sm text-[#E77975] cursor-pointer" />
-                    </Link>
+                    {profile.linkedin_url && (
+                        <Link href={profile.linkedin_url} target="_blank">
+                            <LinkedinIcon size={32} className="p-1 border-2 border-solid border-[#3662E3] rounded-sm text-[#3662E3] cursor-pointer" />
+                        </Link>
+                    )}
 
-                    <Link href={"https://www.linkedin.com/in/luis-felipe-chiqueto/"} target="_blank">
-                        <LinkedinIcon size={32} className="p-1 border-2 border-solid border-[#3662E3] rounded-sm text-[#3662E3] cursor-pointer" />
-                    </Link>
-
-                    <Link href={"https://github.com/Chiqueto"} target="_blank">
-                        <GithubIcon size={32} className="p-1 border-2 border-solid border-[#CCC0C0] rounded-sm text-[#CCC0C0] cursor-pointer" />
-                    </Link>
-
+                    {profile.github_url && (
+                        <Link href={profile.github_url} target="_blank">
+                            <GithubIcon size={32} className="p-1 border-2 border-solid border-[#CCC0C0] rounded-sm text-[#CCC0C0] cursor-pointer" />
+                        </Link>
+                    )}
                 </div>
 
-                <div className="p-4 bg-tertiary rounded-md">
-                    <div className="text-sm flex flex-row justify-between items-center gap-2">
-                        <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
-                            <Smartphone size={12} className="inline" />
+                <div className="p-4 bg-tertiary rounded-md w-full mt-4">
+                    {profile.phone && (
+                        <>
+                            <div className="text-sm flex flex-row justify-between items-center gap-2">
+                                <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
+                                    <Smartphone size={12} className="inline" />
+                                </div>
+                                <p className="flex-1 font-inter font-medium text-sm">{profile.phone}</p>
+                            </div>
+                            <Separator className="my-2" />
+                        </>
+                    )}
+                    {profile.email && (
+                        <>
+                            <div className="text-sm flex flex-row justify-between items-center gap-2">
+                                <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
+                                    <Mail size={12} className="inline" />
+                                </div>
+                                <p className="flex-1 font-inter font-medium text-sm">{profile.email}</p>
+                            </div>
+                            <Separator className="my-2" />
+                        </>
+                    )}
+                    {profile.location && (
+                        <>
+                            <div className="text-sm flex flex-row justify-between items-center gap-2">
+                                <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
+                                    <MapPin size={12} className="inline" />
+                                </div>
+                                <p className="flex-1 font-inter font-medium text-sm">{profile.location}</p>
+                            </div>
+                            <Separator className="my-2" />
+                        </>
+                    )}
+                    {profile.birth_date && (
+                        <div className="text-sm flex flex-row justify-between items-center gap-2">
+                            <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
+                                <Calendar size={12} className="inline" />
+                            </div>
+                            <p className="flex-1 font-inter font-medium text-sm">{birthDateStr}</p>
                         </div>
-                        <p className="flex-1 font-inter font-medium text-sm">+55 (16) 99968-6044</p>
-                    </div>
-                    <Separator className="my-2" />
-                    <div className="text-sm flex flex-row justify-between items-center gap-2">
-                        <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
-                            <Mail size={12} className="inline" />
-                        </div>
-                        <p className="flex-1 font-inter font-medium text-sm">lfchiqueto@gmail.com</p>
-                    </div>
-                    <Separator className="my-2" />
-                    <div className="text-sm flex flex-row justify-between items-center gap-2">
-                        <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
-                            <MapPin size={12} className="inline" />
-                        </div>
-                        <p className="flex-1 font-inter font-medium text-sm">São Joaquim da Barra, SP</p>
-                    </div>
-                    <Separator className="my-2" />
-                    <div className="text-sm flex flex-row justify-between items-center gap-2">
-                        <div className="p-2 bg-zinc-300 rounded-sm text-zinc-900 font-medium flex">
-                            <Calendar size={12} className="inline" />
-                        </div>
-                        <p className="flex-1 font-inter font-medium text-sm">08, MAR. 2005</p>
-                    </div>
-
+                    )}
                 </div>
 
-                <Button variant={"default"} className="border-2 border-solid border-card-border font-bold" asChild>
-                    <a href="https://drive.google.com/file/d/1y_QgyXoDvTp3gK6U2ful3pgZnXwOhvpF/view?usp=sharing"
-                        download={"Luis Felipe Chiqueto - Curriculo.pdf"}
-                        target="_blank">
-                        Meu Curriculo
-                    </a>
-
-                </Button>
-
+                {profile.resume_url && (
+                    <Button variant={"default"} className="border-2 border-solid border-card-border font-bold w-full mt-4" asChild>
+                        <a href={profile.resume_url} download target="_blank">
+                            Meu Currículo
+                        </a>
+                    </Button>
+                )}
             </Card>
         </section >
     );
 }
-
-export default Presentation;

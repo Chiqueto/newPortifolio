@@ -5,6 +5,9 @@ import { useState } from "react";
 import { FaGithub, FaLinkedin, FaFileArrowDown } from "react-icons/fa6";
 import { HiMenuAlt2, HiX } from "react-icons/hi";
 import { useTab } from "@/hooks/useTab";
+import Image from "next/image";
+import { useTheme } from "next-themes";
+import { FiSun, FiMoon } from "react-icons/fi";
 
 const NAV_ITEMS = [
   { id: "home",       label: "Sobre",        index: "01" },
@@ -26,16 +29,27 @@ function SidebarContent({ profile, onNavigate }: { profile?: any; onNavigate?: (
     <div className="flex flex-col h-full bg-surface border-r border-border">
       {/* ── Identidade ── */}
       <div className="px-6 pt-8 pb-6">
-        {/* Monograma */}
-        <div className="flex items-center gap-3 mb-5">
-          <div className="w-11 h-11 rounded border-2 border-gold bg-gold-muted flex items-center justify-center shrink-0">
-            <span className="font-mono font-bold text-gold text-base leading-none">LF</span>
+        {/* Foto de Perfil */}
+        <div className="flex items-center gap-4 mb-5">
+          <div className="relative w-14 h-14 rounded-lg border-2 border-gold/50 overflow-hidden shrink-0 shadow-lg">
+            {profile?.avatar_url ? (
+              <Image 
+                src={profile.avatar_url} 
+                alt={profile.name || "Luís Felipe"} 
+                fill 
+                className="object-cover"
+              />
+            ) : (
+              <div className="w-full h-full bg-gold-muted flex items-center justify-center">
+                <span className="font-mono font-bold text-gold text-lg leading-none">LF</span>
+              </div>
+            )}
           </div>
           <div>
-            <p className="text-xs font-mono text-gold uppercase tracking-[0.15em] leading-none mb-0.5">
+            <p className="text-xs font-mono text-gold uppercase tracking-[0.15em] leading-none mb-1">
               Software Developer
             </p>
-            <h1 className="text-sm font-bold text-foreground leading-tight">
+            <h1 className="text-base font-bold text-foreground leading-tight">
               {profile?.name?.split(" ").slice(0, 2).join(" ") || "Luís Felipe"}
             </h1>
           </div>
@@ -115,7 +129,7 @@ function SidebarContent({ profile, onNavigate }: { profile?: any; onNavigate?: (
 
       <div className="mx-6 border-t border-border" />
 
-      {/* ── Links ── */}
+      {/* ── Links & Theme Toggle ── */}
       <div className="px-6 py-5 flex items-center gap-4">
         {profile?.github_url && (
           <Link href={profile.github_url} target="_blank" aria-label="GitHub"
@@ -135,8 +149,24 @@ function SidebarContent({ profile, onNavigate }: { profile?: any; onNavigate?: (
             <FaFileArrowDown size={18} />
           </a>
         )}
+        <ThemeToggle />
       </div>
     </div>
+  );
+}
+
+function ThemeToggle() {
+  const { theme, setTheme } = useTheme();
+
+  return (
+    <button
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      className="text-muted-foreground hover:text-gold transition-colors ml-2"
+      aria-label="Toggle Theme"
+    >
+      <FiSun className="hidden dark:block" size={18} />
+      <FiMoon className="block dark:hidden" size={18} />
+    </button>
   );
 }
 
@@ -153,8 +183,19 @@ export default function Sidebar({ profile }: { profile?: any }) {
       {/* ── Mobile Header ── */}
       <header className="md:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3 bg-surface border-b border-border">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded border border-gold bg-gold-muted flex items-center justify-center">
-            <span className="font-mono font-bold text-gold text-xs">LF</span>
+          <div className="relative w-8 h-8 rounded border border-gold/50 overflow-hidden shrink-0 shadow-sm">
+            {profile?.avatar_url ? (
+              <Image 
+                src={profile.avatar_url} 
+                alt="Profile" 
+                fill 
+                className="object-cover"
+              />
+            ) : (
+              <div className="w-full h-full bg-gold-muted flex items-center justify-center">
+                <span className="font-mono font-bold text-gold text-xs">LF</span>
+              </div>
+            )}
           </div>
           <div>
             <p className="text-xs font-mono text-gold uppercase tracking-wider leading-none">Dev</p>

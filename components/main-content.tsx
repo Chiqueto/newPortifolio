@@ -43,7 +43,7 @@ export default function MainContent({
       </header>
 
       {/* Conteúdo da seção */}
-      <div className="flex-1 px-8 py-10">
+      <div className="flex-1 px-6 md:px-10 py-8 max-w-5xl w-full mx-auto">
         {selectedTab === "home"       && <Overview profile={profile} />}
         {selectedTab === "projects"   && <Projects projects={projects} />}
         {selectedTab === "experience" && <Experience experiences={experiences} education={education} />}

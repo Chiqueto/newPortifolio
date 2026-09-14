@@ -25,6 +25,7 @@ export function ProfileForm({ initialData, profileId }: { initialData?: any; pro
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [avatarFile, setAvatarFile] = useState<File | null>(null)
+  const [heroFile, setHeroFile] = useState<File | null>(null)
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema) as any,
@@ -40,6 +41,7 @@ export function ProfileForm({ initialData, profileId }: { initialData?: any; pro
       linkedin_url: "",
       instagram_url: "",
       resume_url: "",
+      hero_image_url: "",
     },
   })
 
@@ -59,7 +61,20 @@ export function ProfileForm({ initialData, profileId }: { initialData?: any; pro
       avatarUrl = url
     }
 
-    const res = await updateProfile(profileId, data, avatarFile ? avatarUrl : undefined)
+    let heroUrl = initialData?.hero_image_url
+    if (heroFile) {
+      const ext = heroFile.name.split('.').pop()
+      const fileName = `${Date.now()}_hero.${ext}`
+      const { url, error } = await uploadFile("portfolio", `profile/hero/${fileName}`, heroFile)
+      if (error) {
+        toast.error("Erro no upload", { description: error })
+        setIsLoading(false)
+        return
+      }
+      heroUrl = url
+    }
+
+    const res = await updateProfile(profileId, data, avatarFile ? avatarUrl : undefined, heroFile ? heroUrl : undefined)
 
     if (res.error) {
       toast.error("Erro ao salvar", { description: res.error })
@@ -120,6 +135,14 @@ export function ProfileForm({ initialData, profileId }: { initialData?: any; pro
             <div className="mb-2"><img src={initialData.avatar_url} alt="Avatar" className="h-32 w-32 object-cover rounded-full border" /></div>
           )}
           <Input type="file" accept="image/*" onChange={(e) => setAvatarFile(e.target.files?.[0] || null)} />
+        </div>
+
+        <div className="space-y-2">
+          <FormLabel>Foto da Home (Canto Direito)</FormLabel>
+          {initialData?.hero_image_url && !heroFile && (
+            <div className="mb-2"><img src={initialData.hero_image_url} alt="Hero Image" className="h-48 w-32 object-cover rounded border border-border" /></div>
+          )}
+          <Input type="file" accept="image/*" onChange={(e) => setHeroFile(e.target.files?.[0] || null)} />
         </div>
 
         <Button type="submit" disabled={isLoading}>{isLoading ? "Salvando..." : "Salvar Perfil"}</Button>

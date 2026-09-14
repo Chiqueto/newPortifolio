@@ -4,7 +4,7 @@ import { createClient } from "@/lib/server"
 import { profileSchema, ProfileFormValues } from "./schemas"
 import { revalidatePath } from "next/cache"
 
-export async function updateProfile(id: string | null, data: ProfileFormValues, avatarUrl?: string | null) {
+export async function updateProfile(id: string | null, data: ProfileFormValues, avatarUrl?: string | null, heroImageUrl?: string | null) {
   const supabase = await createClient()
 
   const parsed = profileSchema.safeParse(data)
@@ -26,6 +26,7 @@ export async function updateProfile(id: string | null, data: ProfileFormValues, 
     resume_url: values.resume_url || null,
   }
   if (avatarUrl !== undefined) updateData.avatar_url = avatarUrl
+  if (heroImageUrl !== undefined) updateData.hero_image_url = heroImageUrl
 
   if (id) {
     const { error } = await supabase.from("profile").update(updateData).eq("id", id)

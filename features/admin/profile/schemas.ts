@@ -12,6 +12,7 @@ export const profileSchema = z.object({
   linkedin_url: z.string().nullable().optional(),
   instagram_url: z.string().nullable().optional(),
   resume_url: z.string().nullable().optional(),
+  hero_image_url: z.string().nullable().optional(),
 })
 
 export type ProfileFormValues = z.infer<typeof profileSchema>

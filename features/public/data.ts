@@ -58,3 +58,16 @@ export async function getPublicTechnologies() {
   }
   return data || []
 }
+
+export async function getPublicProjectBySlug(slug: string) {
+  const supabase = await createClient()
+  const { data, error } = await supabase
+    .from("projects")
+    .select("*")
+    .eq("slug", slug)
+    .single()
+  if (error && error.code !== "PGRST116") {
+    console.error("Erro ao buscar projeto:", error.message)
+  }
+  return data || null
+}

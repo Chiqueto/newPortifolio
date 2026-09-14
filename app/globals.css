@@ -7,34 +7,33 @@
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
 
-  /* Paleta de superfícies */
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-  --color-card: hsl(var(--card));
+  --color-background:    hsl(var(--background));
+  --color-foreground:    hsl(var(--foreground));
+  --color-card:          hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
-  --color-surface: hsl(var(--surface));
+  --color-surface:       hsl(var(--surface));
   --color-surface-muted: hsl(var(--surface-muted));
 
-  /* Shadcn padrão */
-  --color-popover: hsl(var(--popover));
+  --color-popover:       hsl(var(--popover));
   --color-popover-foreground: hsl(var(--popover-foreground));
-  --color-primary: hsl(var(--primary));
+  --color-primary:       hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-secondary: hsl(var(--secondary));
+  --color-secondary:     hsl(var(--secondary));
   --color-secondary-foreground: hsl(var(--secondary-foreground));
-  --color-muted: hsl(var(--muted));
+  --color-muted:         hsl(var(--muted));
   --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-accent: hsl(var(--accent));
+  --color-accent:        hsl(var(--accent));
   --color-accent-foreground: hsl(var(--accent-foreground));
-  --color-destructive: hsl(var(--destructive));
+  --color-destructive:   hsl(var(--destructive));
   --color-destructive-foreground: hsl(var(--destructive-foreground));
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
+  --color-border:        hsl(var(--border));
+  --color-input:         hsl(var(--input));
+  --color-ring:          hsl(var(--ring));
 
-  /* Token de identidade — Accent Dourado */
-  --color-gold: hsl(var(--gold));
-  --color-gold-muted: hsl(var(--gold-muted));
+  /* Accent dourado — identidade forte */
+  --color-gold:          hsl(var(--gold));
+  --color-gold-muted:    hsl(var(--gold-muted));
+  --color-gold-dim:      hsl(var(--gold-dim));
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -42,71 +41,45 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* ───────────────────────────── Dark (modo padrão) ───────────────────────────── */
 :root {
-  --radius: 0.5rem;
+  --radius: 0.375rem;
 
-  --background:    222 18% 9%;
-  --foreground:    210 20% 93%;
+  /* Escuro profundo — sem azulado excessivo */
+  --background:     220 15% 7%;
+  --foreground:     210 16% 91%;
 
-  --card:          222 18% 11%;
-  --card-foreground: 210 20% 93%;
+  /* Superfícies */
+  --card:           220 13% 10%;
+  --card-foreground: 210 16% 91%;
+  --surface:        220 12% 13%;
+  --surface-muted:  220 11% 16%;
 
-  --surface:       222 16% 14%;
-  --surface-muted: 222 16% 16%;
+  --popover:        220 13% 10%;
+  --popover-foreground: 210 16% 91%;
 
-  --popover:       222 18% 11%;
-  --popover-foreground: 210 20% 93%;
+  --primary:        43 90% 52%;
+  --primary-foreground: 220 15% 7%;
 
-  --primary:       210 20% 93%;
-  --primary-foreground: 222 18% 9%;
+  --secondary:      220 12% 15%;
+  --secondary-foreground: 210 12% 68%;
 
-  --secondary:     222 16% 16%;
-  --secondary-foreground: 210 20% 80%;
+  --muted:          220 12% 15%;
+  --muted-foreground: 215 10% 46%;
 
-  --muted:         222 16% 16%;
-  --muted-foreground: 215 14% 50%;
+  --accent:         220 12% 17%;
+  --accent-foreground: 210 16% 91%;
 
-  --accent:        222 16% 18%;
-  --accent-foreground: 210 20% 93%;
-
-  --destructive:   0 72% 60%;
+  --destructive:    0 70% 58%;
   --destructive-foreground: 0 0% 98%;
 
-  --border:        222 14% 18%;
-  --input:         222 14% 18%;
-  --ring:          43 74% 55%;
+  --border:         220 11% 19%;
+  --input:          220 11% 17%;
+  --ring:           43 90% 52%;
 
-  /* Accent dourado — assinatura visual */
-  --gold:          43 74% 55%;
-  --gold-muted:    43 50% 30%;
-}
-
-/* Suporte explícito a light se necessário (mantemos dark como padrão via ThemeProvider) */
-.light {
-  --background:    210 20% 97%;
-  --foreground:    222 18% 12%;
-  --card:          0 0% 100%;
-  --card-foreground: 222 18% 12%;
-  --surface:       210 16% 94%;
-  --surface-muted: 210 16% 90%;
-  --popover:       0 0% 100%;
-  --popover-foreground: 222 18% 12%;
-  --primary:       222 18% 12%;
-  --primary-foreground: 210 20% 97%;
-  --secondary:     210 16% 90%;
-  --secondary-foreground: 222 18% 25%;
-  --muted:         210 16% 90%;
-  --muted-foreground: 215 14% 50%;
-  --accent:        210 16% 88%;
-  --accent-foreground: 222 18% 12%;
-  --destructive:   0 72% 51%;
-  --destructive-foreground: 0 0% 98%;
-  --border:        210 14% 84%;
-  --input:         210 14% 84%;
-  --ring:          43 74% 45%;
-  --gold:          43 74% 45%;
-  --gold-muted:    43 50% 70%;
+  /* Dourado forte — assinatura visual marcante */
+  --gold:           43 90% 52%;
+  --gold-muted:     43 65% 18%;
+  --gold-dim:       43 55% 38%;
 }
 
 @layer base {
@@ -114,9 +87,9 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground overflow-x-hidden;
+    @apply bg-background text-foreground overflow-hidden;
   }
   html {
-    @apply overflow-x-hidden scroll-smooth;
+    @apply overflow-hidden;
   }
 }

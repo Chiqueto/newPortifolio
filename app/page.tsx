@@ -1,9 +1,6 @@
+import { TabProvider } from "@/components/providers/tab-provider";
 import Sidebar from "@/components/sidebar";
-import Overview from "@/components/sections/overview";
-import Projects from "@/components/sections/projects";
-import Experience from "@/components/sections/experience";
-import Capabilities from "@/components/sections/capabilities";
-import Contact from "@/components/sections/contact";
+import MainContent from "@/components/main-content";
 import {
   getPublicProfile,
   getPublicProjects,
@@ -23,40 +20,22 @@ export default async function Home() {
     ]);
 
   return (
-    <div className="min-h-screen bg-background">
-      <Sidebar profile={profile} />
+    <TabProvider>
+      {/* Layout de 2 colunas: sidebar fixa + conteúdo scrollável */}
+      <div className="flex h-screen bg-background">
+        <Sidebar profile={profile} />
 
-      {/* Main content — offset for desktop sidebar */}
-      <main className="md:ml-[280px]">
-        <div className="max-w-3xl mx-auto px-6 md:px-12 py-16 md:py-20 space-y-32">
-          <section id="overview">
-            <Overview profile={profile} />
-          </section>
-
-          <section id="projects">
-            <Projects projects={projects} />
-          </section>
-
-          <section id="experience">
-            <Experience experiences={experiences} education={education} />
-          </section>
-
-          <section id="capabilities">
-            <Capabilities technologies={technologies} />
-          </section>
-
-          <section id="contact">
-            <Contact profile={profile} />
-          </section>
+        {/* Área de conteúdo: só ela rola */}
+        <div className="flex-1 overflow-y-auto md:pt-0 pt-[53px]">
+          <MainContent
+            projects={projects}
+            experiences={experiences}
+            education={education}
+            technologies={technologies}
+            profile={profile}
+          />
         </div>
-
-        {/* Footer */}
-        <footer className="md:ml-0 border-t border-border px-6 md:px-12 py-8 max-w-3xl mx-auto">
-          <p className="font-mono text-xs text-muted-foreground">
-            © {new Date().getFullYear()} · Luís Felipe Chiqueto · Built with Next.js
-          </p>
-        </footer>
-      </main>
-    </div>
+      </div>
+    </TabProvider>
   );
 }

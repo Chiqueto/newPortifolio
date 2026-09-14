@@ -1,12 +1,14 @@
-function formatYear(dateStr: string | null): string {
-  if (!dateStr) return "Atual";
-  return new Date(dateStr).getFullYear().toString();
+function formatPeriod(start: string | null, end: string | null): string {
+  const fmt = (d: string) =>
+    new Date(d).toLocaleDateString("pt-BR", { month: "short", year: "numeric" }).replace(".", "");
+  const s = start ? fmt(start) : "—";
+  const e = end ? fmt(end) : "Atual";
+  return `${s} — ${e}`;
 }
 
-function formatMonthYear(dateStr: string | null): string {
-  if (!dateStr) return "Atual";
-  const d = new Date(dateStr);
-  return d.toLocaleDateString("pt-BR", { month: "short", year: "numeric" }).replace(".", "");
+function formatYear(d: string | null): string {
+  if (!d) return "Atual";
+  return new Date(d).getFullYear().toString();
 }
 
 export default function Experience({
@@ -17,50 +19,70 @@ export default function Experience({
   education: any[];
 }) {
   return (
-    <div className="space-y-16">
-      <p className="font-mono text-xs text-gold uppercase tracking-[0.2em]">03 / Experiência</p>
-
-      {/* Professional */}
-      <div className="space-y-8">
-        <p className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
-          Profissional
+    <div className="space-y-12 max-w-3xl">
+      {/* Experiência Profissional */}
+      <div className="space-y-4">
+        <p className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">
+          Experiência Profissional
         </p>
 
         {experiences.length === 0 && (
           <p className="text-muted-foreground text-sm">Nenhuma experiência cadastrada.</p>
         )}
 
-        <div className="space-y-8">
+        <div className="space-y-4">
           {experiences.map((exp) => {
             const startYear = formatYear(exp.start_date);
-            const endYear = exp.end_date ? formatYear(exp.end_date) : "Atual";
-            const period = `${formatMonthYear(exp.start_date)} – ${formatMonthYear(exp.end_date)}`;
+            const endYear = exp.end_date ? formatYear(exp.end_date) : "ATUAL";
+            const period = formatPeriod(exp.start_date, exp.end_date);
+
+            const stack: string[] = exp.tech_stack
+              ? Array.isArray(exp.tech_stack)
+                ? exp.tech_stack
+                : String(exp.tech_stack).split(",").map((s: string) => s.trim())
+              : [];
 
             return (
-              <div key={exp.id} className="flex gap-6">
-                {/* Year column */}
-                <div className="shrink-0 w-14 text-right">
-                  <span className="font-mono text-xs text-gold leading-none">
-                    {startYear === endYear ? startYear : `${startYear}–${endYear}`}
+              <div
+                key={exp.id}
+                className="rounded border border-border bg-card overflow-hidden hover:border-gold/30 transition-colors"
+              >
+                {/* Header do painel */}
+                <div className="flex items-center justify-between px-5 py-3 border-b border-border bg-surface">
+                  <span className="font-mono text-xs text-gold font-bold">
+                    {startYear} — {endYear}
+                  </span>
+                  <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-wider">
+                    {period}
                   </span>
                 </div>
 
-                {/* Divider */}
-                <div className="shrink-0 flex flex-col items-center">
-                  <div className="w-px bg-border flex-1 mt-1" />
-                  <div className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 my-1" />
-                  <div className="w-px bg-border flex-1" />
-                </div>
+                {/* Body */}
+                <div className="px-5 py-4 space-y-3">
+                  <div>
+                    <h3 className="text-base font-bold text-foreground">
+                      {exp.company_name || ""}
+                    </h3>
+                    <p className="text-sm text-gold/80 font-medium">{exp.role || ""}</p>
+                  </div>
 
-                {/* Content */}
-                <div className="pb-8 space-y-1.5 flex-1">
-                  <p className="text-base font-semibold text-foreground">{exp.company_name || ""}</p>
-                  <p className="text-sm text-muted-foreground">{exp.role || ""}</p>
-                  <p className="font-mono text-xs text-border">{period}</p>
                   {exp.description && (
-                    <p className="text-sm text-muted-foreground/80 leading-relaxed pt-1">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       {exp.description}
                     </p>
+                  )}
+
+                  {stack.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {stack.map((t: string) => (
+                        <span
+                          key={t}
+                          className="font-mono text-[11px] px-2 py-0.5 rounded border border-border text-muted-foreground bg-surface"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
                   )}
                 </div>
               </div>
@@ -69,12 +91,11 @@ export default function Experience({
         </div>
       </div>
 
-      {/* Divider */}
       <div className="border-t border-border" />
 
-      {/* Education */}
-      <div className="space-y-8">
-        <p className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
+      {/* Formação */}
+      <div className="space-y-4">
+        <p className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">
           Educação
         </p>
 
@@ -82,25 +103,19 @@ export default function Experience({
           <p className="text-muted-foreground text-sm">Nenhuma formação cadastrada.</p>
         )}
 
-        <div className="space-y-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {education.map((edu) => {
-            const startYear = formatYear(edu.start_date);
-            const endYear = edu.end_date ? formatYear(edu.end_date) : "Atual";
+            const s = formatYear(edu.start_date);
+            const e = edu.end_date ? formatYear(edu.end_date) : "Atual";
 
             return (
-              <div key={edu.id} className="flex gap-6">
-                {/* Year column */}
-                <div className="shrink-0 w-14 text-right">
-                  <span className="font-mono text-xs text-muted-foreground leading-none">
-                    {startYear}–{endYear}
-                  </span>
-                </div>
-
-                {/* Content */}
-                <div className="flex-1 space-y-0.5">
-                  <p className="text-sm font-medium text-foreground">{edu.degree || ""}</p>
-                  <p className="text-xs text-muted-foreground">{edu.institution || ""}</p>
-                </div>
+              <div
+                key={edu.id}
+                className="rounded border border-border bg-card px-4 py-3 space-y-1 hover:border-gold/30 transition-colors"
+              >
+                <p className="font-mono text-[10px] text-muted-foreground">{s} — {e}</p>
+                <p className="text-sm font-semibold text-foreground">{edu.degree || ""}</p>
+                <p className="text-xs text-muted-foreground">{edu.institution || ""}</p>
               </div>
             );
           })}

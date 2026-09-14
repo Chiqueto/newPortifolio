@@ -1,33 +1,55 @@
-'use client';
+"use client";
 
 import { useTab } from "@/hooks/useTab";
-import Experience from "./main-content/experience";
-import Home from "./main-content/home";
-import Skills from "./main-content/skills";
-import { Card } from "./ui/card";
-import Projects from "./main-content/projects";
-import Contact from "./main-content/contact";
+import Overview from "./sections/overview";
+import Projects from "./sections/projects";
+import Experience from "./sections/experience";
+import Capabilities from "./sections/capabilities";
+import Contact from "./sections/contact";
 
-export default function MainContent({ 
-    projects, 
-    experiences, 
-    education, 
-    technologies 
-}: { 
-    projects: any[], 
-    experiences: any[], 
-    education: any[], 
-    technologies: any[] 
+const SECTION_LABELS: Record<string, { index: string; label: string }> = {
+  home:       { index: "01", label: "Sobre" },
+  projects:   { index: "02", label: "Projetos" },
+  experience: { index: "03", label: "Experiência" },
+  skills:     { index: "04", label: "Stack" },
+  contact:    { index: "05", label: "Contato" },
+};
+
+export default function MainContent({
+  projects,
+  experiences,
+  education,
+  technologies,
+  profile,
+}: {
+  projects: any[];
+  experiences: any[];
+  education: any[];
+  technologies: any[];
+  profile?: any;
 }) {
-    const { selectedTab } = useTab();
-    return (
-        <main className="max-w-sm w-full md:max-w-[100%] md:mt-20">
-            <Card className="px-4 pb-4">
-                {selectedTab === "home" && (<Home />)}
-                {selectedTab === "experience" && (<Experience experiences={experiences} education={education} />)}
-                {selectedTab === "skills" && (<Skills technologies={technologies} />)}
-                {selectedTab === "projects" && (<Projects projects={projects} />)}
-                {selectedTab === "contact" && (<Contact />)}
-            </Card>
-        </main>);
+  const { selectedTab } = useTab();
+  const meta = SECTION_LABELS[selectedTab] || SECTION_LABELS.home;
+
+  return (
+    <div className="min-h-full flex flex-col">
+      {/* Header interno da seção */}
+      <header className="sticky top-0 z-10 flex items-center gap-3 px-8 py-4 bg-background/95 backdrop-blur border-b border-border">
+        <span className="font-mono text-xs text-gold">{meta.index}</span>
+        <div className="h-3.5 w-px bg-border" />
+        <span className="font-mono text-xs text-muted-foreground uppercase tracking-widest">
+          {meta.label}
+        </span>
+      </header>
+
+      {/* Conteúdo da seção */}
+      <div className="flex-1 px-8 py-10">
+        {selectedTab === "home"       && <Overview profile={profile} />}
+        {selectedTab === "projects"   && <Projects projects={projects} />}
+        {selectedTab === "experience" && <Experience experiences={experiences} education={education} />}
+        {selectedTab === "skills"     && <Capabilities technologies={technologies} />}
+        {selectedTab === "contact"    && <Contact profile={profile} />}
+      </div>
+    </div>
+  );
 }

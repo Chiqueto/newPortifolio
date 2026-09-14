@@ -33,6 +33,8 @@ const inter = Inter({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
+import { TooltipProvider } from "@/components/ui/tooltip";
+
 export const metadata: Metadata = {
   title: "Portifólio Chiqueto",
   description: "Bem vindo ao meu portifólio de desenvolvedor/programador! Aqui você encontra um pouco de tudo sobre mim.",
@@ -78,7 +80,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <TooltipProvider>
+            {children}
+          </TooltipProvider>
           <Toaster richColors />
           <Analytics />
         </ThemeProvider>

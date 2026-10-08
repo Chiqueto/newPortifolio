@@ -22,11 +22,11 @@ export function AboutScene({ profile, education = [] }: AboutSceneProps) {
     <section 
       id="scene-about" 
       ref={ref}
-      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12 py-16 sm:py-24"
+      className="relative min-h-screen flex items-center justify-center px-3 sm:px-6 md:px-12 py-12 sm:py-24"
     >
       <div className="w-full max-w-6xl mx-auto">
         {/* Scenic Card Container with subtle mountain/forest gradient background */}
-        <div className="relative rounded-[32px] sm:rounded-[44px] bg-gradient-to-b from-[#280625] via-[#350A30] to-[#1D031A] border border-[#F59879]/30 p-6 sm:p-10 md:p-14 shadow-[0_25px_80px_rgba(20,2,19,0.35)] overflow-hidden">
+        <div className="relative rounded-[26px] sm:rounded-[44px] bg-gradient-to-b from-[#280625] via-[#350A30] to-[#1D031A] border border-[#F59879]/30 p-5 sm:p-10 md:p-14 shadow-[0_25px_80px_rgba(20,2,19,0.35)] overflow-hidden">
           
           {/* Subtle Vector Landscape Backdrop Elements */}
           <div className="absolute inset-x-0 bottom-0 pointer-events-none opacity-20 h-48 overflow-hidden">
@@ -50,7 +50,7 @@ export function AboutScene({ profile, education = [] }: AboutSceneProps) {
                 <div className="absolute -inset-3 rounded-full bg-gradient-to-tr from-[#D65F67] via-[#F59879] to-[#F9E6C1] opacity-60 blur-md group-hover:opacity-85 transition-opacity duration-500" />
                 
                 {/* Medallion Border */}
-                <div className="relative w-44 h-44 sm:w-56 sm:h-56 rounded-full p-2 bg-[#22051F] border-2 border-[#F9E6C1]/80 shadow-2xl overflow-hidden">
+                <div className="relative w-36 h-36 sm:w-56 sm:h-56 rounded-full p-1.5 sm:p-2 bg-[#22051F] border-2 border-[#F9E6C1]/80 shadow-2xl overflow-hidden">
                   <div className="w-full h-full rounded-full overflow-hidden relative bg-[#4A1739]">
                     <Image
                       src={profile?.avatar_url || "/profile_pic_cartoon.png"}
@@ -113,13 +113,13 @@ export function AboutScene({ profile, education = [] }: AboutSceneProps) {
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.15 }}
             >
-              {/* Scene Section Tag */}
+              {/* Section Tag */}
               <div className="flex items-center gap-3">
-                <span className="font-mono text-xs text-[#F59879] font-bold px-2 py-0.5 rounded bg-[#4A1739] border border-[#F59879]/40">
-                  CENA 02
+                <span className="font-mono text-xs text-[#F59879] font-bold px-2.5 py-0.5 rounded-full bg-[#4A1739]/80 border border-[#F59879]/40">
+                  02
                 </span>
-                <span className="font-mono text-xs text-[#F9E6C1]/70 uppercase tracking-widest">
-                  Sobre Mim & Visão
+                <span className="font-mono text-xs text-[#F9E6C1]/75 uppercase tracking-widest font-semibold">
+                  Sobre Mim & Perfil
                 </span>
               </div>
 

@@ -52,36 +52,36 @@ export function ProjectsScene({ projects = [] }: ProjectsSceneProps) {
     <section 
       id="scene-projects" 
       ref={ref}
-      className="relative min-h-screen px-4 sm:px-6 md:px-12 py-16 sm:py-24"
+      className="relative min-h-screen px-3 sm:px-6 md:px-12 py-12 sm:py-24"
     >
-      <div className="w-full max-w-6xl mx-auto space-y-10">
+      <div className="w-full max-w-6xl mx-auto space-y-8 sm:space-y-10">
         
         {/* ── Scene Header ── */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-4 border-b border-[#F59879]/20">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 pb-4 border-b border-[#F59879]/20">
           <div>
             <div className="flex items-center gap-3 mb-2">
-              <span className="font-mono text-xs text-[#F59879] font-bold px-2 py-0.5 rounded bg-[#4A1739] border border-[#F59879]/40">
-                CENA 03
+              <span className="font-mono text-xs text-[#F59879] font-bold px-2.5 py-0.5 rounded-full bg-[#4A1739]/80 border border-[#F59879]/40">
+                03
               </span>
-              <span className="font-mono text-xs text-[#F9E6C1]/70 uppercase tracking-widest">
-                Portfólio & Aplicações
+              <span className="font-mono text-xs text-[#F9E6C1]/75 uppercase tracking-widest font-semibold">
+                Projetos & Estudos de Caso
               </span>
             </div>
-            <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
-              Janelas de Criação & Engenharia
+            <h2 className="font-display font-extrabold text-2xl sm:text-4xl text-white tracking-tight">
+              Projetos em Destaque
             </h2>
-            <p className="text-sm text-[#F9E6C1]/80 max-w-xl mt-1">
-              Produtos digitais desenvolvidos com foco em performance, interfaces fluidas e regras de negócio complexas.
+            <p className="text-xs sm:text-sm text-[#F9E6C1]/80 max-w-xl mt-1">
+              Aplicações web, mobile e sistemas completos desenvolvidos com foco em performance e regras de negócio reais.
             </p>
           </div>
 
           {/* Filter Pills */}
-          <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-[#22051F]/80 border border-[#F59879]/30 backdrop-blur-md self-start md:self-auto">
+          <div className="flex flex-wrap items-center gap-1.5 p-1.5 rounded-2xl bg-[#22051F]/80 border border-[#F59879]/30 backdrop-blur-md self-start md:self-auto">
             {categories.map((cat) => (
               <button
                 key={cat.value}
                 onClick={() => setFilter(cat.value)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-mono font-medium transition-all duration-200 ${
+                className={`px-3 py-1.5 rounded-xl text-xs font-mono font-medium transition-all duration-200 ${
                   filter === cat.value
                     ? "bg-[#F59879] text-[#22051F] font-bold shadow-md"
                     : "text-[#F9E6C1]/70 hover:text-white hover:bg-[#4A1739]/50"

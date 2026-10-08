@@ -28,7 +28,7 @@ export const SCENES: SceneItem[] = [
   {
     id: "scene-opening",
     number: "01",
-    title: "Abertura",
+    title: "Início",
     subtitle: "Pôster Ilustrado & Especialização",
     icon: Compass,
   },
@@ -43,7 +43,7 @@ export const SCENES: SceneItem[] = [
     id: "scene-projects",
     number: "03",
     title: "Projetos",
-    subtitle: "Aplicações Reais & Estudos de Caso",
+    subtitle: "Projetos em Destaque & Estudos de Caso",
     icon: Layers,
   },
   {
@@ -162,10 +162,10 @@ export function SceneNavigator({ resumeUrl, activeScene = "scene-opening" }: Sce
                   </div>
                   <div>
                     <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#FFFDF8]">
-                      Navegador de Cenas
+                      Menu de Navegação
                     </h2>
                     <p className="text-xs text-[#F59879]/90 font-mono">
-                      Selecione um ponto da jornada ou pressione 1-6 no teclado
+                      Selecione uma seção ou pressione 1-6 no teclado
                     </p>
                   </div>
                 </div>

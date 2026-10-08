@@ -41,12 +41,12 @@ export function ContactScene({ profile }: ContactSceneProps) {
     <section 
       id="scene-contact" 
       ref={ref}
-      className="relative min-h-screen flex flex-col justify-between px-4 sm:px-6 md:px-12 pt-16 pb-12 sm:pt-24 overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-between px-3 sm:px-6 md:px-12 pt-12 pb-10 sm:pt-24 sm:pb-12 overflow-hidden"
     >
-      <div className="w-full max-w-5xl mx-auto my-auto space-y-12">
+      <div className="w-full max-w-5xl mx-auto my-auto space-y-10 sm:space-y-12">
         
         {/* ── Dusk Framed Card ── */}
-        <div className="relative rounded-[32px] sm:rounded-[44px] bg-gradient-to-b from-[#1E031B] via-[#2A0726] to-[#140213] border border-[#F59879]/30 p-8 sm:p-12 md:p-16 shadow-[0_25px_80px_rgba(0,0,0,0.5)] overflow-hidden text-center">
+        <div className="relative rounded-[26px] sm:rounded-[44px] bg-gradient-to-b from-[#1E031B] via-[#2A0726] to-[#140213] border border-[#F59879]/30 p-6 sm:p-12 md:p-16 shadow-[0_25px_80px_rgba(0,0,0,0.5)] overflow-hidden text-center">
           
           {/* Subtle starry background dots */}
           <div className="absolute inset-0 opacity-40 pointer-events-none">
@@ -68,12 +68,12 @@ export function ContactScene({ profile }: ContactSceneProps) {
             
             {/* Header Badge */}
             <motion.div
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#22051F] border border-[#F59879]/40 text-[#F59879] text-xs font-mono font-semibold"
+              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#22051F] border border-[#F59879]/40 text-[#F59879] text-xs font-mono font-semibold"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
             >
               <Sparkles className="w-3.5 h-3.5" />
-              <span>CENA 06 · ENCERRAMENTO & CONTATO</span>
+              <span>06 · CONTATO & CONEXÃO</span>
             </motion.div>
 
             {/* Headline */}

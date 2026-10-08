@@ -5,6 +5,7 @@
 
 @theme inline {
   --font-sans: var(--font-inter);
+  --font-display: var(--font-outfit);
   --font-mono: var(--font-geist-mono);
 
   --color-background:    hsl(var(--background));
@@ -33,6 +34,16 @@
   --color-gold:          hsl(var(--gold));
   --color-gold-muted:    hsl(var(--gold-muted));
   --color-gold-dim:      hsl(var(--gold-dim));
+
+  /* Illustrated Poster Palette */
+  --color-poster-cream:       #F9E6C1;
+  --color-poster-cream-light: #FDF7EC;
+  --color-poster-coral:       #F59879;
+  --color-poster-rose:        #D65F67;
+  --color-poster-wine:        #4A1739;
+  --color-poster-wine-dark:   #22051F;
+  --color-poster-night:       #140213;
+  --color-poster-sun:         #FFF3D6;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -122,10 +133,10 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground overflow-hidden;
-  }
   html {
-    @apply overflow-hidden;
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-poster-coral/30 selection:text-foreground;
   }
 }

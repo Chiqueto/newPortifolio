@@ -2,7 +2,19 @@ import { getPublicProjectBySlug } from "@/features/public/data";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { FaArrowLeft, FaGithub, FaArrowUpRightFromSquare } from "react-icons/fa6";
+import { ArrowLeft, Github, ExternalLink, Sparkles, FolderGit2 } from "lucide-react";
+
+const DEFAULT_SLUG_IMAGES: Record<string, string> = {
+  "plann-er": "/plann.er.png",
+  "doutor-agenda": "/doutor_agenda.png",
+  "fsw-barber": "/fsw.png",
+  "virtuafab": "/virtuafab.png",
+  "gameverser": "/capa_gameverser.png",
+  "pokedex": "/capa_pokedex.png",
+  "pokedex-mobile": "/capa_pokedex_mobile.png",
+  "chat-websocket": "/chat_websocket.png",
+  "to-do-list": "/todolist.png",
+};
 
 export default async function ProjectPage(props: {
   params: Promise<{ slug: string }>;
@@ -22,93 +34,98 @@ export default async function ProjectPage(props: {
     ? project.status.replace(/_/g, " ").toUpperCase()
     : null;
 
+  const displayImage =
+    project.cover_image_url ||
+    project.thumbnail_url ||
+    DEFAULT_SLUG_IMAGES[project.slug];
+
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
-      {/* Top bar — mantém identidade do workspace */}
-      <header className="sticky top-0 z-50 border-b border-border bg-surface/95 backdrop-blur">
-        <div className="px-6 py-3 flex items-center gap-4 max-w-5xl mx-auto">
+    <div className="min-h-screen bg-[#FBF4EB] dark:bg-[#150314] text-[#22051F] dark:text-[#F9E6C1] transition-colors duration-500 flex flex-col">
+      {/* Top bar */}
+      <header className="sticky top-0 z-50 border-b border-[#F59879]/30 bg-[#22051F]/90 backdrop-blur-md text-[#F9E6C1]">
+        <div className="px-6 py-3.5 flex items-center justify-between max-w-5xl mx-auto w-full">
           <Link
             href="/"
-            className="flex items-center gap-2 text-sm font-mono text-muted-foreground hover:text-gold transition-colors"
+            className="flex items-center gap-2 text-xs font-mono text-[#F9E6C1] hover:text-[#FFF] hover:scale-105 transition-all"
           >
-            <FaArrowLeft size={11} /> Portfólio
+            <ArrowLeft size={14} className="text-[#F59879]" />
+            <span>Voltar ao Portfólio</span>
           </Link>
-          <div className="h-3.5 w-px bg-border" />
-          <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">
-            Case Study
-          </span>
-          <div className="h-3.5 w-px bg-border" />
-          <span className="font-mono text-[10px] text-gold uppercase tracking-widest">
-            {project.title}
-          </span>
+          <div className="flex items-center gap-2 text-xs font-mono">
+            <span className="text-[#F59879]/70 uppercase tracking-widest hidden sm:inline">
+              Estudo de Caso
+            </span>
+            <span className="text-[#F59879] hidden sm:inline">/</span>
+            <span className="text-[#FFF] font-semibold uppercase tracking-wider">
+              {project.title}
+            </span>
+          </div>
         </div>
       </header>
 
-      <main className="flex-1 max-w-5xl mx-auto w-full px-6 py-10 space-y-10">
-
-        {/* Header: metadata + título */}
-        <div className="rounded border border-border bg-card overflow-hidden">
-          {/* Barra de status */}
-          <div className="flex items-center gap-3 px-5 py-3 border-b border-border bg-surface">
+      <main className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 py-10 space-y-8">
+        {/* Header Hero Card */}
+        <div className="rounded-[28px] sm:rounded-[36px] border border-[#F59879]/30 bg-gradient-to-br from-[#280624] to-[#1C031A] text-[#F9E6C1] overflow-hidden shadow-[0_20px_50px_rgba(20,2,19,0.3)]">
+          {/* Status bar */}
+          <div className="flex items-center gap-3 px-6 py-3.5 border-b border-[#F59879]/20 bg-[#22051F]/80">
             {statusLabel && (
-              <span className="font-mono text-xs text-gold uppercase tracking-wider">
+              <span className="font-mono text-xs text-[#F59879] uppercase tracking-wider font-semibold">
                 {statusLabel}
               </span>
             )}
             {project.project_type && (
               <>
-                <div className="h-3 w-px bg-border" />
-                <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-wider">
+                <div className="h-3 w-px bg-[#F59879]/30" />
+                <span className="font-mono text-[11px] text-[#F9E6C1]/70 uppercase tracking-wider">
                   {project.project_type}
                 </span>
               </>
             )}
           </div>
 
-          <div className="p-6 md:p-8 flex flex-col md:flex-row gap-8">
-            {/* Título + descrição */}
+          <div className="p-6 sm:p-10 flex flex-col md:flex-row gap-8 justify-between">
             <div className="flex-1 space-y-4">
-              <h1 className="text-4xl md:text-5xl font-black text-foreground uppercase tracking-tight leading-tight">
+              <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-white uppercase tracking-tight leading-tight">
                 {project.title}
               </h1>
               {project.short_description && (
-                <p className="text-base text-muted-foreground leading-relaxed max-w-lg">
+                <p className="text-sm sm:text-base text-[#F9E6C1]/90 leading-relaxed max-w-xl">
                   {project.short_description}
                 </p>
               )}
-              <div className="flex flex-wrap gap-2 pt-2">
+              <div className="flex flex-wrap gap-2.5 pt-2">
                 {project.live_url && (
                   <Link
                     href={project.live_url}
                     target="_blank"
-                    className="flex items-center gap-2 px-4 py-2 rounded border border-gold/50 text-gold text-xs font-mono hover:bg-gold-muted transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#F59879] hover:bg-[#F9E6C1] text-[#22051F] font-semibold text-xs font-mono transition-all hover:scale-105 active:scale-95 shadow-md"
                   >
-                    <FaArrowUpRightFromSquare size={11} /> Demo ao vivo
+                    <ExternalLink size={13} /> Demo ao vivo
                   </Link>
                 )}
                 {project.repository_url && (
                   <Link
                     href={project.repository_url}
                     target="_blank"
-                    className="flex items-center gap-2 px-4 py-2 rounded border border-border text-muted-foreground text-xs font-mono hover:text-foreground hover:border-gold/30 transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#22051F] hover:bg-[#4A1739] text-[#F9E6C1] hover:text-white border border-[#F59879]/40 text-xs font-mono transition-colors"
                   >
-                    <FaGithub size={13} /> Código-fonte
+                    <Github size={14} className="text-[#F59879]" /> Código-fonte
                   </Link>
                 )}
               </div>
             </div>
 
-            {/* Stack */}
+            {/* Stack Box */}
             {stack.length > 0 && (
-              <div className="md:w-48 shrink-0 space-y-2">
-                <p className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">
-                  Stack
+              <div className="md:w-56 shrink-0 space-y-2.5 p-4 rounded-2xl bg-[#22051F]/80 border border-[#F59879]/30 self-start">
+                <p className="font-mono text-[10px] text-[#F59879] uppercase tracking-widest font-semibold">
+                  Stack Tecnológica
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {stack.map((t: string) => (
                     <span
                       key={t}
-                      className="font-mono text-[11px] px-2 py-0.5 rounded border border-border text-muted-foreground bg-surface"
+                      className="font-mono text-[11px] px-2.5 py-1 rounded-lg border border-[#F59879]/20 text-[#F9E6C1] bg-[#1C031A]"
                     >
                       {t}
                     </span>
@@ -119,55 +136,61 @@ export default async function ProjectPage(props: {
           </div>
         </div>
 
-        {/* Imagem de capa */}
-        {project.cover_image_url && (
-          <div className="relative aspect-video w-full rounded border border-border overflow-hidden bg-surface">
+        {/* Project Cover / Showcase */}
+        {displayImage ? (
+          <div className="relative aspect-video w-full rounded-[28px] sm:rounded-[36px] border border-[#F59879]/30 overflow-hidden bg-[#22051F] shadow-[0_20px_50px_rgba(20,2,19,0.3)]">
             <Image
-              src={project.cover_image_url}
+              src={displayImage}
               alt={project.title || ""}
               fill
-              className="object-cover"
+              className="object-cover object-top"
               priority
             />
           </div>
+        ) : (
+          <div className="aspect-video w-full rounded-[28px] sm:rounded-[36px] border border-[#F59879]/30 flex flex-col items-center justify-center bg-gradient-to-br from-[#280624] to-[#1C031A] text-center p-8 text-[#F9E6C1]">
+            <FolderGit2 className="w-16 h-16 text-[#F59879]/60 mb-3" />
+            <h2 className="font-display font-bold text-2xl text-white">
+              {project.title}
+            </h2>
+            <p className="text-xs font-mono text-[#F59879] mt-1">
+              Documentação e Arquitetura do Projeto
+            </p>
+          </div>
         )}
 
-        {/* Conteúdo */}
+        {/* Content Article */}
         {project.content ? (
-          <div className="rounded border border-border bg-card overflow-hidden">
-            <div className="px-5 py-3 border-b border-border bg-surface">
-              <p className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">
-                Descrição
+          <div className="rounded-[28px] sm:rounded-[36px] border border-[#F59879]/30 bg-gradient-to-br from-[#280624] to-[#1C031A] overflow-hidden text-[#F9E6C1] shadow-lg">
+            <div className="px-6 py-4 border-b border-[#F59879]/20 bg-[#22051F]/80 flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-[#F59879]" />
+              <p className="font-mono text-xs text-[#F59879] uppercase tracking-widest font-semibold">
+                Detalhamento & Decisões de Engenharia
               </p>
             </div>
             <article
-              className="p-6 md:p-8 prose prose-sm md:prose-base prose-invert max-w-none
-                prose-headings:font-bold prose-headings:text-foreground prose-headings:tracking-tight
-                prose-p:text-muted-foreground prose-p:leading-relaxed
-                prose-a:text-gold prose-a:no-underline hover:prose-a:underline
-                prose-code:font-mono prose-code:text-xs prose-code:bg-surface prose-code:rounded prose-code:px-1.5 prose-code:py-0.5
-                prose-strong:text-foreground"
+              className="p-6 sm:p-10 prose prose-invert max-w-none prose-p:text-[#F9E6C1]/90 prose-headings:text-white prose-a:text-[#F59879]"
               dangerouslySetInnerHTML={{ __html: project.content }}
             />
           </div>
         ) : (
-          <div className="rounded border border-border bg-card px-6 py-8 text-center">
-            <p className="text-muted-foreground text-sm italic">Descrição detalhada em breve.</p>
+          <div className="rounded-[28px] border border-[#F59879]/30 bg-gradient-to-br from-[#280624] to-[#1C031A] p-8 text-center text-[#F9E6C1]">
+            <p className="text-sm font-mono text-[#F9E6C1]/70">
+              Detalhamento arquitetural completo em desenvolvimento.
+            </p>
           </div>
         )}
       </main>
 
-      <footer className="border-t border-border bg-surface">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+      <footer className="border-t border-[#F59879]/30 bg-[#22051F] text-[#F9E6C1]">
+        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between text-xs font-mono">
           <Link
             href="/"
-            className="flex items-center gap-2 text-xs font-mono text-muted-foreground hover:text-gold transition-colors"
+            className="flex items-center gap-2 text-[#F9E6C1] hover:text-[#FFF] transition-colors"
           >
-            <FaArrowLeft size={10} /> Voltar ao portfólio
+            <ArrowLeft size={12} className="text-[#F59879]" /> Voltar ao portfólio
           </Link>
-          <p className="font-mono text-[10px] text-muted-foreground">
-            © {new Date().getFullYear()} · Luís Felipe Chiqueto
-          </p>
+          <p>© {new Date().getFullYear()} · Luís Felipe Chiqueto</p>
         </div>
       </footer>
     </div>

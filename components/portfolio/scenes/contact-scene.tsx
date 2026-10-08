@@ -41,12 +41,12 @@ export function ContactScene({ profile }: ContactSceneProps) {
     <section 
       id="scene-contact" 
       ref={ref}
-      className="relative min-h-screen flex flex-col justify-between px-4 sm:px-6 md:px-12 pt-16 pb-12 sm:pt-24 overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-between px-3 sm:px-6 md:px-12 pt-12 pb-10 sm:pt-24 sm:pb-12 overflow-hidden"
     >
-      <div className="w-full max-w-5xl mx-auto my-auto space-y-12">
+      <div className="w-full max-w-5xl mx-auto my-auto space-y-10 sm:space-y-12">
         
         {/* ── Dusk Framed Card ── */}
-        <div className="relative rounded-[32px] sm:rounded-[44px] bg-gradient-to-b from-[#1E031B] via-[#2A0726] to-[#140213] border border-[#F59879]/30 p-8 sm:p-12 md:p-16 shadow-[0_25px_80px_rgba(0,0,0,0.5)] overflow-hidden text-center">
+        <div className="relative rounded-[26px] sm:rounded-[44px] bg-gradient-to-b from-[#1E031B] via-[#2A0726] to-[#140213] border border-[#F59879]/30 p-6 sm:p-12 md:p-16 shadow-[0_25px_80px_rgba(0,0,0,0.5)] overflow-hidden text-center">
           
           {/* Subtle starry background dots */}
           <div className="absolute inset-0 opacity-40 pointer-events-none">

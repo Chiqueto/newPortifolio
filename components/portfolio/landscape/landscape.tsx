@@ -36,12 +36,14 @@ export function Landscape({ children, className = "", variant = "sunset" }: Land
       onMouseLeave={handleMouseLeave}
       className={`relative w-full overflow-visible transition-colors duration-700 ${className}`}
     >
-      {/* ── Outer Layers Breaking Boundaries (Clouds & Iconic Soaring Bird) ── */}
-      <CloudLayer mouseXOffset={mouseXOffset} />
-      <BirdsLayer mouseXOffset={mouseXOffset} />
+      {/* ── Outer Layers Breaking Boundaries (Visible on tablet/desktop) ── */}
+      <div className="hidden sm:block">
+        <CloudLayer mouseXOffset={mouseXOffset} />
+        <BirdsLayer mouseXOffset={mouseXOffset} />
+      </div>
 
-      {/* ── Framed Poster Interior ── */}
-      <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9] max-h-[820px] rounded-[32px] sm:rounded-[40px] md:rounded-[48px] overflow-hidden shadow-[0_30px_90px_rgba(34,5,31,0.25)] border border-[#F59879]/30">
+      {/* ── Desktop Framed Poster vs Mobile Full-Bleed Immersive View ── */}
+      <div className="relative w-full min-h-[100dvh] sm:min-h-[600px] sm:aspect-[16/10] md:aspect-[16/9] max-h-[860px] rounded-none sm:rounded-[40px] md:rounded-[48px] overflow-hidden shadow-none sm:shadow-[0_30px_90px_rgba(34,5,31,0.25)] border-0 sm:border sm:border-[#F59879]/30">
         {/* Layer 1: Sky & Sun */}
         <SkyLayer />
 
@@ -52,7 +54,7 @@ export function Landscape({ children, className = "", variant = "sunset" }: Land
         <ForestLayer mouseXOffset={mouseXOffset} />
 
         {/* Layer 4: Foreground Content & UI */}
-        <div className="relative z-30 w-full h-full flex flex-col justify-between p-6 sm:p-10 md:p-12">
+        <div className="relative z-30 w-full h-full min-h-[100dvh] sm:min-h-0 flex flex-col justify-between p-5 pt-8 pb-8 sm:p-10 md:p-12">
           {children}
         </div>
       </div>

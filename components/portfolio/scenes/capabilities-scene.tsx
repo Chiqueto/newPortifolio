@@ -120,9 +120,9 @@ export function CapabilitiesScene({ technologies = [] }: CapabilitiesSceneProps)
     <section 
       id="scene-technologies" 
       ref={ref}
-      className="relative min-h-screen px-4 sm:px-6 md:px-12 py-16 sm:py-24"
+      className="relative min-h-screen px-3 sm:px-6 md:px-12 py-12 sm:py-24"
     >
-      <div className="w-full max-w-6xl mx-auto space-y-12">
+      <div className="w-full max-w-6xl mx-auto space-y-10 sm:space-y-12">
         
         {/* ── Scene Header ── */}
         <div className="pb-4 border-b border-[#F59879]/20">
@@ -134,10 +134,10 @@ export function CapabilitiesScene({ technologies = [] }: CapabilitiesSceneProps)
               Stack & Habilidades
             </span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
+          <h2 className="font-display font-extrabold text-2xl sm:text-4xl text-white tracking-tight">
             Tecnologias & Ferramentas
           </h2>
-          <p className="text-sm text-[#F9E6C1]/80 max-w-xl mt-1">
+          <p className="text-xs sm:text-sm text-[#F9E6C1]/80 max-w-xl mt-1">
             Linguagens, frameworks e ecossistema aplicado na construção de produtos de alta confiabilidade.
           </p>
         </div>

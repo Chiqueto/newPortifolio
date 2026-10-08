@@ -88,7 +88,7 @@ export function PortfolioContainer({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 30 }}
             transition={{ duration: 0.3 }}
-            className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 p-2 rounded-2xl bg-[#22051F]/80 backdrop-blur-md border border-[#F59879]/40 shadow-[0_10px_35px_rgba(0,0,0,0.4)] text-[#F9E6C1]"
+            className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center gap-2 p-1.5 sm:p-2 rounded-2xl bg-[#22051F]/85 backdrop-blur-md border border-[#F59879]/40 shadow-[0_10px_35px_rgba(0,0,0,0.4)] text-[#F9E6C1]"
           >
             {/* Active Scene Indicator Pill */}
             <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#4A1739]/50 border border-[#F59879]/20 font-mono text-xs">

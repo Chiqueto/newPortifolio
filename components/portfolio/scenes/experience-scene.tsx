@@ -33,9 +33,9 @@ export function ExperienceScene({ experiences = [] }: ExperienceSceneProps) {
     <section 
       id="scene-experience" 
       ref={ref}
-      className="relative min-h-screen px-4 sm:px-6 md:px-12 py-16 sm:py-24"
+      className="relative min-h-screen px-3 sm:px-6 md:px-12 py-12 sm:py-24"
     >
-      <div className="w-full max-w-5xl mx-auto space-y-12">
+      <div className="w-full max-w-5xl mx-auto space-y-10 sm:space-y-12">
         
         {/* ── Scene Header ── */}
         <div className="pb-4 border-b border-[#F59879]/20">
@@ -47,16 +47,16 @@ export function ExperienceScene({ experiences = [] }: ExperienceSceneProps) {
               Trajetória & Carreira
             </span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
+          <h2 className="font-display font-extrabold text-2xl sm:text-4xl text-white tracking-tight">
             Experiência Profissional
           </h2>
-          <p className="text-sm text-[#F9E6C1]/80 max-w-xl mt-1">
+          <p className="text-xs sm:text-sm text-[#F9E6C1]/80 max-w-xl mt-1">
             Atuação em desenvolvimento corporativo, sistemas ERP e indústria sucroalcooleira.
           </p>
         </div>
 
         {/* ── Visual Journey / Mountain Trail Timeline ── */}
-        <div className="relative pl-6 sm:pl-10 space-y-8 sm:space-y-12">
+        <div className="relative pl-6 sm:pl-10 space-y-6 sm:space-y-12">
           
           {/* Vertical scenic glowing trail line */}
           <div className="absolute left-2.5 sm:left-4 top-4 bottom-4 w-0.5 bg-gradient-to-b from-[#F59879] via-[#D65F67] to-[#4A1739]" />
@@ -88,7 +88,7 @@ export function ExperienceScene({ experiences = [] }: ExperienceSceneProps) {
                 </div>
 
                 {/* Experience Card */}
-                <div className="rounded-[24px] sm:rounded-[32px] bg-gradient-to-br from-[#280624] to-[#1C031A] border border-[#F59879]/30 hover:border-[#F59879] p-6 sm:p-8 transition-all duration-300 shadow-[0_15px_45px_rgba(20,2,19,0.3)]">
+                <div className="rounded-[22px] sm:rounded-[32px] bg-gradient-to-br from-[#280624] to-[#1C031A] border border-[#F59879]/30 hover:border-[#F59879] p-5 sm:p-8 transition-all duration-300 shadow-[0_15px_45px_rgba(20,2,19,0.3)]">
                   
                   {/* Card Header with Logo, Role, Company & Dates */}
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#F59879]/20">

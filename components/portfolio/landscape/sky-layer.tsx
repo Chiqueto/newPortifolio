@@ -31,7 +31,7 @@ export function SkyLayer({ sunScale = 1 }: SkyLayerProps) {
 
       {/* Radiant Setting Sun */}
       <motion.div
-        className="absolute top-[32%] right-[22%] sm:right-[26%] -translate-y-1/2 flex items-center justify-center"
+        className="absolute top-[24%] sm:top-[32%] right-[16%] sm:right-[26%] -translate-y-1/2 flex items-center justify-center pointer-events-none"
         initial={shouldReduceMotion ? { scale: 1, opacity: 1 } : { scale: 0.85, opacity: 0 }}
         animate={{ scale: 1 * sunScale, opacity: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}

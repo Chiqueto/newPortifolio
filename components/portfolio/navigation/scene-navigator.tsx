@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   X, 
@@ -83,6 +84,25 @@ export function SceneNavigator({ resumeUrl, activeScene = "scene-opening" }: Sce
     setMounted(true);
   }, []);
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const originalOverflow = document.body.style.overflow;
+    const originalPaddingRight = document.body.style.paddingRight;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+    document.body.style.overflow = "hidden";
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      document.body.style.paddingRight = originalPaddingRight;
+    };
+  }, [isOpen]);
+
   // Keyboard shortcut: Esc to close, 1-6 to navigate
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -113,7 +133,7 @@ export function SceneNavigator({ resumeUrl, activeScene = "scene-opening" }: Sce
 
   return (
     <>
-      {/* ── The 4-Square Button (As requested in design reference) ── */}
+      {/* ── The 4-Square Button (Trigger) ── */}
       <button
         onClick={() => setIsOpen(true)}
         aria-label="Abrir navegador de cenas do portfólio"
@@ -129,130 +149,135 @@ export function SceneNavigator({ resumeUrl, activeScene = "scene-opening" }: Sce
         <span className="sr-only">Navegação por Cenas</span>
       </button>
 
-      {/* ── Fullscreen Illustrated Scene Navigator Overlay ── */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 bg-[#160315]/85 backdrop-blur-xl"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-          >
-            {/* Modal Card */}
-            <motion.div
-              className="relative w-full max-w-4xl rounded-[32px] sm:rounded-[40px] bg-gradient-to-b from-[#22051F] via-[#2F082B] to-[#1C031A] border border-[#F59879]/40 p-6 sm:p-10 shadow-[0_30px_100px_rgba(0,0,0,0.6)] overflow-hidden text-[#F9E6C1]"
-              initial={{ scale: 0.92, y: 20, opacity: 0 }}
-              animate={{ scale: 1, y: 0, opacity: 1 }}
-              exit={{ scale: 0.92, y: 20, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 28 }}
-            >
-              {/* Background ambient sunset glow */}
-              <div className="absolute top-0 right-1/4 w-80 h-80 rounded-full bg-[#F59879]/15 blur-3xl pointer-events-none" />
-              <div className="absolute bottom-0 left-10 w-96 h-96 rounded-full bg-[#D65F67]/10 blur-3xl pointer-events-none" />
+      {/* ── Fullscreen Illustrated Modal via React Portal (Breaks out of transformed parents) ── */}
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                onClick={(e) => {
+                  if (e.target === e.currentTarget) setIsOpen(false);
+                }}
+                className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 md:p-10 bg-[#160315]/85 backdrop-blur-xl"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+              >
+                {/* Modal Card with Max-Height and Internal Scroll */}
+                <motion.div
+                  className="relative w-full max-w-4xl max-h-[88dvh] sm:max-h-[90vh] flex flex-col rounded-[26px] sm:rounded-[40px] bg-gradient-to-b from-[#22051F] via-[#2F082B] to-[#1C031A] border border-[#F59879]/40 p-4 sm:p-8 md:p-10 shadow-[0_30px_100px_rgba(0,0,0,0.7)] text-[#F9E6C1] overflow-hidden"
+                  initial={{ scale: 0.92, y: 20, opacity: 0 }}
+                  animate={{ scale: 1, y: 0, opacity: 1 }}
+                  exit={{ scale: 0.92, y: 20, opacity: 0 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 28 }}
+                >
+                  {/* Background ambient sunset glow */}
+                  <div className="absolute top-0 right-1/4 w-80 h-80 rounded-full bg-[#F59879]/15 blur-3xl pointer-events-none" />
+                  <div className="absolute bottom-0 left-10 w-96 h-96 rounded-full bg-[#D65F67]/10 blur-3xl pointer-events-none" />
 
-              {/* Header */}
-              <div className="flex items-center justify-between pb-6 border-b border-[#F59879]/20">
-                <div className="flex items-center gap-3">
-                  <div className="grid grid-cols-2 gap-1 w-4 h-4">
-                    <span className="w-1.5 h-1.5 rounded-[1px] bg-[#F59879]" />
-                    <span className="w-1.5 h-1.5 rounded-[1px] bg-[#F9E6C1]" />
-                    <span className="w-1.5 h-1.5 rounded-[1px] bg-[#D65F67]" />
-                    <span className="w-1.5 h-1.5 rounded-[1px] bg-[#F59879]" />
-                  </div>
-                  <div>
-                    <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#FFFDF8]">
-                      Menu de Navegação
-                    </h2>
-                    <p className="text-xs text-[#F59879]/90 font-mono">
-                      Selecione uma seção ou pressione 1-6 no teclado
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  {/* Theme Switcher Button */}
-                  {mounted && (
-                    <button
-                      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                      aria-label="Alternar tema"
-                      className="p-2.5 rounded-full bg-[#4A1739]/60 hover:bg-[#4A1739] border border-[#F59879]/30 text-[#F9E6C1] transition-colors"
-                    >
-                      {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
-                    </button>
-                  )}
-
-                  {/* Close Button */}
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    aria-label="Fechar menu"
-                    className="p-2.5 rounded-full bg-[#4A1739]/60 hover:bg-[#4A1739] border border-[#F59879]/30 text-[#F9E6C1] hover:text-white transition-colors"
-                  >
-                    <X size={18} />
-                  </button>
-                </div>
-              </div>
-
-              {/* 6 Scenes Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-4 py-6">
-                {SCENES.map((scene) => {
-                  const Icon = scene.icon;
-                  const isActive = activeScene === scene.id;
-
-                  return (
-                    <button
-                      key={scene.id}
-                      onClick={() => scrollToScene(scene.id)}
-                      className={`group text-left p-4 sm:p-5 rounded-2xl border transition-all duration-200 relative overflow-hidden ${
-                        isActive
-                          ? "bg-[#4A1739]/80 border-[#F59879] shadow-[0_4px_20px_rgba(245,152,121,0.25)]"
-                          : "bg-[#2A0726]/60 hover:bg-[#4A1739]/50 border-[#F59879]/20 hover:border-[#F59879]/60"
-                      }`}
-                    >
-                      {/* Active indicator bar */}
-                      {isActive && (
-                        <div className="absolute top-0 left-0 bottom-0 w-1 bg-gradient-to-b from-[#F9E6C1] to-[#F59879]" />
-                      )}
-
-                      <div className="flex items-start justify-between mb-3">
-                        <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded-md bg-[#22051F]/80 text-[#F59879] border border-[#F59879]/30">
-                          {scene.number}
-                        </span>
-                        <div className="p-2 rounded-xl bg-[#22051F]/60 text-[#F9E6C1] group-hover:text-[#FFF] group-hover:scale-110 transition-all">
-                          <Icon size={18} />
-                        </div>
+                  {/* Header (Always Visible / shrink-0) */}
+                  <div className="shrink-0 flex items-center justify-between pb-4 sm:pb-6 border-b border-[#F59879]/20">
+                    <div className="flex items-center gap-3">
+                      <div className="grid grid-cols-2 gap-1 w-4 h-4">
+                        <span className="w-1.5 h-1.5 rounded-[1px] bg-[#F59879]" />
+                        <span className="w-1.5 h-1.5 rounded-[1px] bg-[#F9E6C1]" />
+                        <span className="w-1.5 h-1.5 rounded-[1px] bg-[#D65F67]" />
+                        <span className="w-1.5 h-1.5 rounded-[1px] bg-[#F59879]" />
                       </div>
+                      <div>
+                        <h2 className="text-lg sm:text-2xl font-bold tracking-tight text-[#FFFDF8]">
+                          Menu de Navegação
+                        </h2>
+                        <p className="text-[11px] sm:text-xs text-[#F59879]/90 font-mono">
+                          Selecione uma seção ou pressione 1-6 no teclado
+                        </p>
+                      </div>
+                    </div>
 
-                      <h3 className="font-bold text-base sm:text-lg text-[#FFFDF8] group-hover:text-[#F9E6C1] transition-colors">
-                        {scene.title}
-                      </h3>
-                      <p className="text-xs text-[#F9E6C1]/70 line-clamp-1 mt-0.5">
-                        {scene.subtitle}
-                      </p>
-                    </button>
-                  );
-                })}
-              </div>
+                    <div className="flex items-center gap-2">
+                      {/* Theme Switcher Button */}
+                      <button
+                        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                        aria-label="Alternar tema"
+                        className="p-2 sm:p-2.5 rounded-full bg-[#4A1739]/60 hover:bg-[#4A1739] border border-[#F59879]/30 text-[#F9E6C1] transition-colors"
+                      >
+                        {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+                      </button>
 
-              {/* Bottom Actions */}
-              <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#F59879]/20 text-xs text-[#F9E6C1]/80 font-mono">
-                <span>Luís Felipe Mozer Chiqueto · Portfolio Rebranding</span>
-                {resumeUrl && (
-                  <a
-                    href={resumeUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F59879]/20 hover:bg-[#F59879]/30 border border-[#F59879]/40 text-[#F9E6C1] hover:text-white transition-colors"
-                  >
-                    <FileText size={13} />
-                    <span>Download CV</span>
-                  </a>
-                )}
-              </div>
-            </motion.div>
-          </motion.div>
+                      {/* Close Button */}
+                      <button
+                        onClick={() => setIsOpen(false)}
+                        aria-label="Fechar menu"
+                        className="p-2 sm:p-2.5 rounded-full bg-[#4A1739]/60 hover:bg-[#4A1739] border border-[#F59879]/30 text-[#F9E6C1] hover:text-white transition-colors"
+                      >
+                        <X size={17} />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* 6 Scenes Grid with internal scroll */}
+                  <div className="flex-1 overflow-y-auto overscroll-contain py-4 sm:py-6 pr-1 sm:pr-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 [scrollbar-width:thin] [scrollbar-color:#F59879_transparent]">
+                    {SCENES.map((scene) => {
+                      const Icon = scene.icon;
+                      const isActive = activeScene === scene.id;
+
+                      return (
+                        <button
+                          key={scene.id}
+                          onClick={() => scrollToScene(scene.id)}
+                          className={`group text-left p-3.5 sm:p-5 rounded-2xl border transition-all duration-200 relative overflow-hidden ${
+                            isActive
+                              ? "bg-[#4A1739]/80 border-[#F59879] shadow-[0_4px_20px_rgba(245,152,121,0.25)]"
+                              : "bg-[#2A0726]/60 hover:bg-[#4A1739]/50 border-[#F59879]/20 hover:border-[#F59879]/60"
+                          }`}
+                        >
+                          {/* Active indicator bar */}
+                          {isActive && (
+                            <div className="absolute top-0 left-0 bottom-0 w-1 bg-gradient-to-b from-[#F9E6C1] to-[#F59879]" />
+                          )}
+
+                          <div className="flex items-start justify-between mb-2 sm:mb-3">
+                            <span className="font-mono text-[11px] sm:text-xs font-semibold px-2 py-0.5 rounded-md bg-[#22051F]/80 text-[#F59879] border border-[#F59879]/30">
+                              {scene.number}
+                            </span>
+                            <div className="p-1.5 sm:p-2 rounded-xl bg-[#22051F]/60 text-[#F9E6C1] group-hover:text-[#FFF] group-hover:scale-110 transition-all">
+                              <Icon size={16} />
+                            </div>
+                          </div>
+
+                          <h3 className="font-bold text-sm sm:text-lg text-[#FFFDF8] group-hover:text-[#F9E6C1] transition-colors">
+                            {scene.title}
+                          </h3>
+                          <p className="text-[11px] sm:text-xs text-[#F9E6C1]/70 line-clamp-1 mt-0.5">
+                            {scene.subtitle}
+                          </p>
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Bottom Actions (Always Visible / shrink-0) */}
+                  <div className="shrink-0 flex flex-wrap items-center justify-between gap-3 pt-3 sm:pt-4 border-t border-[#F59879]/20 text-[11px] sm:text-xs text-[#F9E6C1]/80 font-mono">
+                    <span className="truncate">Luís Felipe Mozer Chiqueto</span>
+                    {resumeUrl && (
+                      <a
+                        href={resumeUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F59879]/20 hover:bg-[#F59879]/30 border border-[#F59879]/40 text-[#F9E6C1] hover:text-white transition-colors"
+                      >
+                        <FileText size={12} />
+                        <span>Download CV</span>
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </>
   );
 }

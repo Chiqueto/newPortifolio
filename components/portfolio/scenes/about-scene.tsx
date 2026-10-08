@@ -113,13 +113,13 @@ export function AboutScene({ profile, education = [] }: AboutSceneProps) {
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.15 }}
             >
-              {/* Scene Section Tag */}
+              {/* Section Tag */}
               <div className="flex items-center gap-3">
-                <span className="font-mono text-xs text-[#F59879] font-bold px-2 py-0.5 rounded bg-[#4A1739] border border-[#F59879]/40">
-                  CENA 02
+                <span className="font-mono text-xs text-[#F59879] font-bold px-2.5 py-0.5 rounded-full bg-[#4A1739]/80 border border-[#F59879]/40">
+                  02
                 </span>
-                <span className="font-mono text-xs text-[#F9E6C1]/70 uppercase tracking-widest">
-                  Sobre Mim & Visão
+                <span className="font-mono text-xs text-[#F9E6C1]/75 uppercase tracking-widest font-semibold">
+                  Sobre Mim & Perfil
                 </span>
               </div>
 

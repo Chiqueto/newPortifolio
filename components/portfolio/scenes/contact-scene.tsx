@@ -68,12 +68,12 @@ export function ContactScene({ profile }: ContactSceneProps) {
             
             {/* Header Badge */}
             <motion.div
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#22051F] border border-[#F59879]/40 text-[#F59879] text-xs font-mono font-semibold"
+              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#22051F] border border-[#F59879]/40 text-[#F59879] text-xs font-mono font-semibold"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
             >
               <Sparkles className="w-3.5 h-3.5" />
-              <span>CENA 06 · ENCERRAMENTO & CONTATO</span>
+              <span>06 · CONTATO & CONEXÃO</span>
             </motion.div>
 
             {/* Headline */}

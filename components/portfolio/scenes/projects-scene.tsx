@@ -60,18 +60,18 @@ export function ProjectsScene({ projects = [] }: ProjectsSceneProps) {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-4 border-b border-[#F59879]/20">
           <div>
             <div className="flex items-center gap-3 mb-2">
-              <span className="font-mono text-xs text-[#F59879] font-bold px-2 py-0.5 rounded bg-[#4A1739] border border-[#F59879]/40">
-                CENA 03
+              <span className="font-mono text-xs text-[#F59879] font-bold px-2.5 py-0.5 rounded-full bg-[#4A1739]/80 border border-[#F59879]/40">
+                03
               </span>
-              <span className="font-mono text-xs text-[#F9E6C1]/70 uppercase tracking-widest">
-                Portfólio & Aplicações
+              <span className="font-mono text-xs text-[#F9E6C1]/75 uppercase tracking-widest font-semibold">
+                Projetos & Estudos de Caso
               </span>
             </div>
             <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
-              Janelas de Criação & Engenharia
+              Projetos em Destaque
             </h2>
             <p className="text-sm text-[#F9E6C1]/80 max-w-xl mt-1">
-              Produtos digitais desenvolvidos com foco em performance, interfaces fluidas e regras de negócio complexas.
+              Aplicações web, mobile e sistemas completos desenvolvidos com foco em performance e regras de negócio reais.
             </p>
           </div>
 

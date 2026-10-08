@@ -40,18 +40,18 @@ export function ExperienceScene({ experiences = [] }: ExperienceSceneProps) {
         {/* ── Scene Header ── */}
         <div className="pb-4 border-b border-[#F59879]/20">
           <div className="flex items-center gap-3 mb-2">
-            <span className="font-mono text-xs text-[#F59879] font-bold px-2 py-0.5 rounded bg-[#4A1739] border border-[#F59879]/40">
-              CENA 04
+            <span className="font-mono text-xs text-[#F59879] font-bold px-2.5 py-0.5 rounded-full bg-[#4A1739]/80 border border-[#F59879]/40">
+              04
             </span>
-            <span className="font-mono text-xs text-[#F9E6C1]/70 uppercase tracking-widest">
-              Trajetória Profissional
+            <span className="font-mono text-xs text-[#F9E6C1]/75 uppercase tracking-widest font-semibold">
+              Trajetória & Carreira
             </span>
           </div>
           <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
-            A Trilha de Evolução & Vivência Prática
+            Experiência Profissional
           </h2>
           <p className="text-sm text-[#F9E6C1]/80 max-w-xl mt-1">
-            Marcos fundamentais de atuação na indústria sucroalcooleira e software corporativo.
+            Atuação em desenvolvimento corporativo, sistemas ERP e indústria sucroalcooleira.
           </p>
         </div>
 

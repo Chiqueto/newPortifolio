@@ -1,28 +1,26 @@
 "use client";
 
 import React from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion, useTransform, type MotionValue } from "motion/react";
 
 interface ForestLayerProps {
-  mouseXOffset?: number;
+  smoothMouseX?: MotionValue<number>;
 }
 
-export function ForestLayer({ mouseXOffset = 0 }: ForestLayerProps) {
+export function ForestLayer({ smoothMouseX }: ForestLayerProps) {
   const shouldReduceMotion = useReducedMotion();
+  const dummyValue = { get: () => 0 } as any;
+
+  const xDist = useTransform(smoothMouseX ?? dummyValue, [-1, 1], [12, -12]);
+  const xMid = useTransform(smoothMouseX ?? dummyValue, [-1, 1], [18, -18]);
+  const xFore = useTransform(smoothMouseX ?? dummyValue, [-1, 1], [24, -24]);
 
   return (
     <>
       {/* ── 1. Distant Forest Ridge / Tree Canopy (Terracotta Wine) ── */}
       <motion.div
-        className="absolute inset-x-0 bottom-0 pointer-events-none h-[48%] overflow-hidden rounded-[inherit]"
-        animate={
-          shouldReduceMotion
-            ? {}
-            : {
-                x: mouseXOffset * -12,
-              }
-        }
-        transition={{ type: "spring", stiffness: 50, damping: 20 }}
+        className="absolute inset-x-0 bottom-0 pointer-events-none h-[48%] overflow-hidden rounded-[inherit] will-change-transform"
+        style={shouldReduceMotion || !smoothMouseX ? undefined : { x: xDist }}
       >
         <svg
           viewBox="0 0 1440 400"
@@ -31,7 +29,6 @@ export function ForestLayer({ mouseXOffset = 0 }: ForestLayerProps) {
           xmlns="http://www.w3.org/2000/svg"
           className="w-full h-full"
         >
-          {/* Jagged tree tops in distant haze */}
           <path
             d="M0 160 
                L20 152 L40 160 L60 148 L80 158 L110 145 L140 155 L170 142 L200 154 L230 140 L260 152 L290 138 L320 150
@@ -46,15 +43,8 @@ export function ForestLayer({ mouseXOffset = 0 }: ForestLayerProps) {
 
       {/* ── 2. Midground Forest (Rich Wine #4A1739) ── */}
       <motion.div
-        className="absolute inset-x-0 bottom-0 pointer-events-none h-[42%] overflow-hidden rounded-[inherit]"
-        animate={
-          shouldReduceMotion
-            ? {}
-            : {
-                x: mouseXOffset * -18,
-              }
-        }
-        transition={{ type: "spring", stiffness: 45, damping: 20 }}
+        className="absolute inset-x-0 bottom-0 pointer-events-none h-[42%] overflow-hidden rounded-[inherit] will-change-transform"
+        style={shouldReduceMotion || !smoothMouseX ? undefined : { x: xMid }}
       >
         <svg
           viewBox="0 0 1440 360"
@@ -63,7 +53,6 @@ export function ForestLayer({ mouseXOffset = 0 }: ForestLayerProps) {
           xmlns="http://www.w3.org/2000/svg"
           className="w-full h-full"
         >
-          {/* Distinct Pine Spire Layer */}
           <path
             d="M0 120 
                L15 80 L22 105 L30 70 L38 98 L50 60 L62 95 L75 50 L88 92 L105 55 L120 95 L140 65 L160 100
@@ -78,15 +67,8 @@ export function ForestLayer({ mouseXOffset = 0 }: ForestLayerProps) {
 
       {/* ── 3. Foreground Dense Forest (Deep Obsidian Wine #22051F) ── */}
       <motion.div
-        className="absolute inset-x-0 bottom-0 pointer-events-none h-[34%] overflow-hidden rounded-[inherit]"
-        animate={
-          shouldReduceMotion
-            ? {}
-            : {
-                x: mouseXOffset * -24,
-              }
-        }
-        transition={{ type: "spring", stiffness: 40, damping: 20 }}
+        className="absolute inset-x-0 bottom-0 pointer-events-none h-[34%] overflow-hidden rounded-[inherit] will-change-transform"
+        style={shouldReduceMotion || !smoothMouseX ? undefined : { x: xFore }}
       >
         <svg
           viewBox="0 0 1440 300"
@@ -95,7 +77,6 @@ export function ForestLayer({ mouseXOffset = 0 }: ForestLayerProps) {
           xmlns="http://www.w3.org/2000/svg"
           className="w-full h-full drop-shadow-[0_-8px_16px_rgba(20,2,19,0.3)]"
         >
-          {/* Prominent Foreground Pine Silhouette with Individual Detailed Trees */}
           <path
             d="M0 60
                L12 18 L18 38 L25 10 L32 35 L40 5 L48 32 L58 12 L66 38 L78 2 L88 35 L100 18 L112 45
@@ -108,7 +89,6 @@ export function ForestLayer({ mouseXOffset = 0 }: ForestLayerProps) {
             fill="#22051F"
           />
 
-          {/* Deep Base Shadow Overlay along very bottom for text legibility */}
           <rect x="0" y="200" width="1440" height="100" fill="#1C0319" />
         </svg>
       </motion.div>

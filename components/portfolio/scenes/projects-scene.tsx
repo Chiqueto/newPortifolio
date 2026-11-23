@@ -20,12 +20,22 @@ interface ProjectsSceneProps {
 }
 
 const DEFAULT_SLUG_IMAGES: Record<string, string> = {
+  "marcala": "/marcala.png",
+  "trainvy": "/trainvy.png",
+  "setvision": "/setvision.png",
+  "smartrep": "/smartrep.png",
+  "gym-twin": "/gym-twin.png",
+  "digital-twin-biomecanica": "/digital-twin-biomecanica.png",
+  "papo-torto": "/papo-torto.png",
+  "class-line-backend": "/LOGIN-ADMIN.svg",
+  "gestao-de-beneficios": "/gestao-de-beneficios.png",
+  "pokedex": "/capa_pokedex.png",
+  "gta-zombie-3d": "/gta-zombie.png",
   "plann-er": "/plann.er.png",
   "doutor-agenda": "/doutor_agenda.png",
   "fsw-barber": "/fsw.png",
   "virtuafab": "/virtuafab.png",
   "gameverser": "/capa_gameverser.png",
-  "pokedex": "/capa_pokedex.png",
   "pokedex-mobile": "/capa_pokedex_mobile.png",
   "chat-websocket": "/chat_websocket.png",
   "to-do-list": "/todolist.png",

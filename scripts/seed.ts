@@ -132,7 +132,7 @@ const seed = async () => {
       published: true,
       live_url: "https://usemarcala.com.br/",
       repository_url: null,
-      cover_image_url: null,
+      cover_image_url: "/marcala.png",
       sort_order: 0,
       techs: ["Java", "Spring Boot", "Next.js", "Typescript", "TailwindCSS", "PostgreSQL", "Docker", "Cloudflare R2", "Asaas"]
     },
@@ -145,9 +145,9 @@ const seed = async () => {
       project_type: "WEB",
       featured: true,
       published: true,
-      live_url: "https://bootcamp-treinos-frontend-iota.vercel.app",
+      live_url: "https://trainvy.vercel.app/",
       repository_url: "https://github.com/Chiqueto/trainvy-frontend",
-      cover_image_url: null,
+      cover_image_url: "/trainvy.png",
       sort_order: 1,
       techs: ["Next.js", "Typescript", "React", "TailwindCSS", "Supabase", "PostgreSQL", "PLpgSQL"]
     },
@@ -162,7 +162,7 @@ const seed = async () => {
       published: true,
       live_url: null,
       repository_url: "https://github.com/Chiqueto/Set-Vision",
-      cover_image_url: null,
+      cover_image_url: "/setvision.png",
       sort_order: 2,
       techs: ["Python", "FastAPI", "OpenCV", "YOLO", "Next.js", "Typescript", "TailwindCSS"]
     },
@@ -177,7 +177,7 @@ const seed = async () => {
       published: true,
       live_url: null,
       repository_url: "https://github.com/Chiqueto/SmartRepMobile",
-      cover_image_url: null,
+      cover_image_url: "/smartrep.png",
       sort_order: 3,
       techs: ["Kotlin", "WearOS", "React Native", "Java", "Spring Boot", "PostgreSQL", "Docker"]
     },
@@ -192,7 +192,7 @@ const seed = async () => {
       published: true,
       live_url: "https://gym-twin-frontend.vercel.app/",
       repository_url: "https://github.com/Chiqueto/digital-twin",
-      cover_image_url: null,
+      cover_image_url: "/gym-twin.png",
       sort_order: 4,
       techs: ["Three.js", "React Three Fiber", "Next.js", "Typescript", "TailwindCSS"]
     },
@@ -207,7 +207,7 @@ const seed = async () => {
       published: true,
       live_url: null,
       repository_url: "https://github.com/Chiqueto/digital-twin",
-      cover_image_url: null,
+      cover_image_url: "/digital-twin-biomecanica.png",
       sort_order: 5,
       techs: ["Three.js", "React Three Fiber", "Next.js", "Typescript"]
     },
@@ -222,7 +222,7 @@ const seed = async () => {
       published: true,
       live_url: "https://papo-torto.vercel.app",
       repository_url: "https://github.com/Chiqueto/Papo_Torto",
-      cover_image_url: null,
+      cover_image_url: "/papo-torto.png",
       sort_order: 6,
       techs: ["Next.js", "Typescript", "WebSocket", "PostgreSQL", "Redis", "TailwindCSS"]
     },
@@ -252,7 +252,7 @@ const seed = async () => {
       published: true,
       live_url: null,
       repository_url: "https://github.com/Chiqueto/Senai-TCC---Backend-GB",
-      cover_image_url: null,
+      cover_image_url: "/gestao-de-beneficios.png",
       sort_order: 8,
       techs: ["Java", "Spring Boot", "PostgreSQL", "Docker"]
     },
@@ -282,7 +282,7 @@ const seed = async () => {
       published: true,
       live_url: null,
       repository_url: "https://github.com/Chiqueto/GTA-Zombie-3d-Game",
-      cover_image_url: null,
+      cover_image_url: "/gta-zombie.png",
       sort_order: 10,
       techs: ["C#", "Unity 3D"]
     },

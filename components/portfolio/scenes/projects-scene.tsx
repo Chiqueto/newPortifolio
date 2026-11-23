@@ -41,11 +41,14 @@ export function ProjectsScene({ projects = [] }: ProjectsSceneProps) {
     { label: "Web", value: "WEB" },
     { label: "Mobile", value: "MOBILE" },
     { label: "Backend", value: "BACKEND" },
+    { label: "3D & Games", value: "GAMES" },
   ];
 
   const filteredProjects = projects.filter((p) => {
     if (filter === "ALL") return true;
-    return p.project_type?.toUpperCase() === filter;
+    const type = p.project_type?.toUpperCase();
+    if (filter === "GAMES") return type === "GAMES" || type === "OTHER" || type === "3D" || type === "GAME";
+    return type === filter;
   });
 
   return (

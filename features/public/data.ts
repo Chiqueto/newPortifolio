@@ -14,13 +14,23 @@ export async function getPublicProjects() {
   const supabase = await createClient()
   const { data, error } = await supabase
     .from("projects")
-    .select("*")
+    .select(`
+      *,
+      project_technologies (
+        technologies (
+          name
+        )
+      )
+    `)
     .eq("published", true)
     .order("sort_order", { ascending: true })
   if (error) {
     console.error("Erro ao buscar projects:", error.message)
   }
-  return data || []
+  return (data || []).map((p: any) => ({
+    ...p,
+    tech_stack: p.project_technologies?.map((pt: any) => pt.technologies?.name).filter(Boolean) || []
+  }))
 }
 
 export async function getPublicExperiences() {
@@ -63,11 +73,22 @@ export async function getPublicProjectBySlug(slug: string) {
   const supabase = await createClient()
   const { data, error } = await supabase
     .from("projects")
-    .select("*")
+    .select(`
+      *,
+      project_technologies (
+        technologies (
+          name
+        )
+      )
+    `)
     .eq("slug", slug)
     .single()
   if (error && error.code !== "PGRST116") {
     console.error("Erro ao buscar projeto:", error.message)
   }
-  return data || null
+  if (!data) return null
+  return {
+    ...data,
+    tech_stack: data.project_technologies?.map((pt: any) => pt.technologies?.name).filter(Boolean) || []
+  }
 }

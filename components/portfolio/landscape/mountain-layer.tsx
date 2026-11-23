@@ -1,26 +1,20 @@
 "use client";
 
 import React from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion, useTransform, type MotionValue } from "motion/react";
 
 interface MountainLayerProps {
-  mouseXOffset?: number;
+  smoothMouseX?: MotionValue<number>;
 }
 
-export function MountainLayer({ mouseXOffset = 0 }: MountainLayerProps) {
+export function MountainLayer({ smoothMouseX }: MountainLayerProps) {
   const shouldReduceMotion = useReducedMotion();
+  const x = useTransform(smoothMouseX ?? { get: () => 0 } as any, [-1, 1], [8, -8]);
 
   return (
     <motion.div
-      className="absolute inset-0 pointer-events-none overflow-hidden rounded-[inherit]"
-      animate={
-        shouldReduceMotion
-          ? {}
-          : {
-              x: mouseXOffset * -8,
-            }
-      }
-      transition={{ type: "spring", stiffness: 60, damping: 25 }}
+      className="absolute inset-0 pointer-events-none overflow-hidden rounded-[inherit] will-change-transform"
+      style={shouldReduceMotion || !smoothMouseX ? undefined : { x }}
     >
       <svg
         viewBox="0 0 1440 800"

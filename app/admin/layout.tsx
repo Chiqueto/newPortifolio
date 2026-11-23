@@ -1,6 +1,8 @@
 import { AppSidebar } from "@/components/admin/app-sidebar"
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar"
 
+export const dynamic = 'force-dynamic'
+
 export default function AdminLayout({
   children,
 }: {

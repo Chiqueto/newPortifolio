@@ -34,7 +34,7 @@ const seed = async () => {
     linkedin_url: "https://www.linkedin.com/in/luis-felipe-chiqueto/",
     instagram_url: "https://www.instagram.com/lfchiqueto?igsh=MXhxcWV3c2U1Nm9meg==",
     resume_url: "https://drive.google.com/file/d/1y_QgyXoDvTp3gK6U2ful3pgZnXwOhvpF/view?usp=sharing",
-    avatar_url: "/profile_pic_cartoon.png"
+    avatar_url: "https://pamosyiiddwdjggdbkiq.supabase.co/storage/v1/object/public/portfolio/profile/avatar.png"
   };
 
   const { error: profileError } = await supabase.from('profile').upsert({ id: '00000000-0000-0000-0000-000000000001', ...profile });
@@ -48,11 +48,7 @@ const seed = async () => {
     { institution: "SENAI - Franca", course: "Formação Técnica em Desenvolvimento de Sistemas", start_date: "2024-01-01", end_date: "2025-12-31", sort_order: 3 }
   ];
 
-  for (const ed of educations) {
-    const { error } = await supabase.from('education').upsert(ed as any, { onConflict: 'institution,course', ignoreDuplicates: true }); // We'll just insert if there is an error on upsert without unique
-    if (error) console.error("Erro ed:", error);
-  }
-  // To make education idempotent easily since it doesn't have a unique natural key, we will delete all and insert
+  // Education idempotente: limpa e reinsere
   await supabase.from('education').delete().neq('id', '00000000-0000-0000-0000-000000000000');
   const { error: edError } = await supabase.from('education').insert(educations);
   if (edError) console.error("Erro education:", edError);
@@ -60,8 +56,8 @@ const seed = async () => {
 
   // 3. Experiences
   const experiences = [
-    { company: "ACEDATA Software", role: "Programador Estagiário", start_date: "2023-03-01", end_date: "2023-12-31", description: "Como estagiário, fui responsável por desenvolver correções e melhorias no sistema ERP da empresa, tanto em ambientes Windows quanto Web. Para isso, aprendi a utilizar Genexus, a principal tecnologia empregada no desenvolvimento das soluções. Durante essa experiência, não apenas refinei minha lógica de programação, mas também adquiri habilidades essenciais de trabalho em equipe, aplicando a metodologia ágil SCRUM.", company_logo_url: "/Acedata.png", sort_order: 2 },
-    { company: "Usina Alta Mogiana", role: "Aprendiz de Desenvolvimento de Sistemas", start_date: "2024-01-01", current: true, description: "Como jovem aprendiz, participei do curso técnico de Desenvolvimento de Sistemas promovido pelo SENAI, além de ser integrado às atividades de T.I. na usina. Essas atividades incluíram desenvolvimento de sistemas, manutenção de sistemas embarcados, suporte à infraestrutura, automação industrial e inovação tecnológica. Essas experiências me permitiram expandir minha visão e conhecimento sobre tecnologia e suas diversas aplicações nas áreas operacionais da usina.", company_logo_url: "/AltaMogiana2.png", sort_order: 1 }
+    { company: "ACEDATA Software", role: "Programador Estagiário", start_date: "2023-03-01", end_date: "2023-12-31", description: "Como estagiário, fui responsável por desenvolver correções e melhorias no sistema ERP da empresa, tanto em ambientes Windows quanto Web. Para isso, aprendi a utilizar Genexus, a principal tecnologia empregada no desenvolvimento das soluções. Durante essa experiência, não apenas refinei minha lógica de programação, mas também adquiri habilidades essenciais de trabalho em equipe, aplicando a metodologia ágil SCRUM.", company_logo_url: "https://pamosyiiddwdjggdbkiq.supabase.co/storage/v1/object/public/portfolio/experiences/acedata.png", sort_order: 2 },
+    { company: "Usina Alta Mogiana", role: "Aprendiz de Desenvolvimento de Sistemas", start_date: "2024-01-01", current: true, description: "Como jovem aprendiz, participei do curso técnico de Desenvolvimento de Sistemas promovido pelo SENAI, além de ser integrado às atividades de T.I. na usina. Essas atividades incluíram desenvolvimento de sistemas, manutenção de sistemas embarcados, suporte à infraestrutura, automação industrial e inovação tecnológica. Essas experiências me permitiram expandir minha visão e conhecimento sobre tecnologia e suas diversas aplicações nas áreas operacionais da usina.", company_logo_url: "https://pamosyiiddwdjggdbkiq.supabase.co/storage/v1/object/public/portfolio/experiences/alta-mogiana.png", sort_order: 1 }
   ];
   await supabase.from('experiences').delete().neq('id', '00000000-0000-0000-0000-000000000000');
   const { error: expError } = await supabase.from('experiences').insert(experiences);
@@ -132,7 +128,7 @@ const seed = async () => {
       published: true,
       live_url: "https://usemarcala.com.br/",
       repository_url: null,
-      cover_image_url: "/marcala.png",
+      cover_image_url: "https://pamosyiiddwdjggdbkiq.supabase.co/storage/v1/object/public/portfolio/projects/covers/marcala.png",
       sort_order: 0,
       techs: ["Java", "Spring Boot", "Next.js", "Typescript", "TailwindCSS", "PostgreSQL", "Docker", "Cloudflare R2", "Asaas"]
     },
@@ -147,7 +143,7 @@ const seed = async () => {
       published: true,
       live_url: "https://trainvy.vercel.app/",
       repository_url: "https://github.com/Chiqueto/trainvy-frontend",
-      cover_image_url: "/trainvy.png",
+      cover_image_url: "https://pamosyiiddwdjggdbkiq.supabase.co/storage/v1/object/public/portfolio/projects/covers/trainvy.png",
       sort_order: 1,
       techs: ["Next.js", "Typescript", "React", "TailwindCSS", "Supabase", "PostgreSQL", "PLpgSQL"]
     },
@@ -162,7 +158,7 @@ const seed = async () => {
       published: true,
       live_url: null,
       repository_url: "https://github.com/Chiqueto/Set-Vision",
-      cover_image_url: "/setvision.png",
+      cover_image_url: "https://pamosyiiddwdjggdbkiq.supabase.co/storage/v1/object/public/portfolio/projects/covers/setvision.png",
       sort_order: 2,
       techs: ["Python", "FastAPI", "OpenCV", "YOLO", "Next.js", "Typescript", "TailwindCSS"]
     },
@@ -177,7 +173,7 @@ const seed = async () => {
       published: true,
       live_url: null,
       repository_url: "https://github.com/Chiqueto/SmartRepMobile",
-      cover_image_url: "/smartrep.png",
+      cover_image_url: "https://pamosyiiddwdjggdbkiq.supabase.co/storage/v1/object/public/portfolio/projects/covers/smartrep.png",
       sort_order: 3,
       techs: ["Kotlin", "WearOS", "React Native", "Java", "Spring Boot", "PostgreSQL", "Docker"]
     },
@@ -192,7 +188,7 @@ const seed = async () => {
       published: true,
       live_url: "https://gym-twin-frontend.vercel.app/",
       repository_url: "https://github.com/Chiqueto/digital-twin",
-      cover_image_url: "/gym-twin.png",
+      cover_image_url: "https://pamosyiiddwdjggdbkiq.supabase.co/storage/v1/object/public/portfolio/projects/covers/gym-twin.png",
       sort_order: 4,
       techs: ["Three.js", "React Three Fiber", "Next.js", "Typescript", "TailwindCSS"]
     },
@@ -207,7 +203,7 @@ const seed = async () => {
       published: true,
       live_url: null,
       repository_url: "https://github.com/Chiqueto/digital-twin",
-      cover_image_url: "/digital-twin-biomecanica.png",
+      cover_image_url: "https://pamosyiiddwdjggdbkiq.supabase.co/storage/v1/object/public/portfolio/projects/covers/digital-twin-biomecanica.png",
       sort_order: 5,
       techs: ["Three.js", "React Three Fiber", "Next.js", "Typescript"]
     },
@@ -222,7 +218,7 @@ const seed = async () => {
       published: true,
       live_url: "https://papo-torto.vercel.app",
       repository_url: "https://github.com/Chiqueto/Papo_Torto",
-      cover_image_url: "/papo-torto.png",
+      cover_image_url: "https://pamosyiiddwdjggdbkiq.supabase.co/storage/v1/object/public/portfolio/projects/covers/papo-torto.png",
       sort_order: 6,
       techs: ["Next.js", "Typescript", "WebSocket", "PostgreSQL", "Redis", "TailwindCSS"]
     },
@@ -237,7 +233,7 @@ const seed = async () => {
       published: true,
       live_url: "https://classline-backend.onrender.com/swagger-ui/index.html",
       repository_url: "https://github.com/Chiqueto/ClassLine-Backend",
-      cover_image_url: "/LOGIN-ADMIN.svg",
+      cover_image_url: "https://pamosyiiddwdjggdbkiq.supabase.co/storage/v1/object/public/portfolio/projects/covers/class-line-backend.svg",
       sort_order: 7,
       techs: ["Java", "Spring Boot", "PostgreSQL", "Docker", "Swagger"]
     },
@@ -252,7 +248,7 @@ const seed = async () => {
       published: true,
       live_url: null,
       repository_url: "https://github.com/Chiqueto/Senai-TCC---Backend-GB",
-      cover_image_url: "/gestao-de-beneficios.png",
+      cover_image_url: "https://pamosyiiddwdjggdbkiq.supabase.co/storage/v1/object/public/portfolio/projects/covers/gestao-de-beneficios.png",
       sort_order: 8,
       techs: ["Java", "Spring Boot", "PostgreSQL", "Docker"]
     },
@@ -267,7 +263,7 @@ const seed = async () => {
       published: true,
       live_url: "https://pokedex-git-v2-luis-felipe-mozer-chiquetos-projects.vercel.app/",
       repository_url: "https://github.com/Chiqueto/pokedex",
-      cover_image_url: "/capa_pokedex.png",
+      cover_image_url: "https://pamosyiiddwdjggdbkiq.supabase.co/storage/v1/object/public/portfolio/projects/covers/pokedex.png",
       sort_order: 9,
       techs: ["React", "Typescript", "TailwindCSS"]
     },
@@ -282,7 +278,7 @@ const seed = async () => {
       published: true,
       live_url: null,
       repository_url: "https://github.com/Chiqueto/GTA-Zombie-3d-Game",
-      cover_image_url: "/gta-zombie.png",
+      cover_image_url: "https://pamosyiiddwdjggdbkiq.supabase.co/storage/v1/object/public/portfolio/projects/covers/gta-zombie.png",
       sort_order: 10,
       techs: ["C#", "Unity 3D"]
     },

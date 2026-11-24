@@ -57,7 +57,7 @@ const seed = async () => {
   // 3. Experiences
   const experiences = [
     { company: "ACEDATA Software", role: "Programador Estagiário", start_date: "2023-03-01", end_date: "2023-12-31", description: "Como estagiário, fui responsável por desenvolver correções e melhorias no sistema ERP da empresa, tanto em ambientes Windows quanto Web. Para isso, aprendi a utilizar Genexus, a principal tecnologia empregada no desenvolvimento das soluções. Durante essa experiência, não apenas refinei minha lógica de programação, mas também adquiri habilidades essenciais de trabalho em equipe, aplicando a metodologia ágil SCRUM.", company_logo_url: "https://pamosyiiddwdjggdbkiq.supabase.co/storage/v1/object/public/portfolio/experiences/acedata.png", sort_order: 2 },
-    { company: "Usina Alta Mogiana", role: "Aprendiz de Desenvolvimento de Sistemas", start_date: "2024-01-01", current: true, description: "Como jovem aprendiz, participei do curso técnico de Desenvolvimento de Sistemas promovido pelo SENAI, além de ser integrado às atividades de T.I. na usina. Essas atividades incluíram desenvolvimento de sistemas, manutenção de sistemas embarcados, suporte à infraestrutura, automação industrial e inovação tecnológica. Essas experiências me permitiram expandir minha visão e conhecimento sobre tecnologia e suas diversas aplicações nas áreas operacionais da usina.", company_logo_url: "https://pamosyiiddwdjggdbkiq.supabase.co/storage/v1/object/public/portfolio/experiences/alta-mogiana.png", sort_order: 1 }
+    { company: "Usina Alta Mogiana", role: "Aprendiz de Desenvolvimento de Sistemas", start_date: "2024-01-01", current: true, description: "Como jovem aprendiz, participei do curso técnico de Desenvolvimento de Sistemas promovido pelo SENAI, além de ser integrado às atividades de T.I. na usina. Nessas atividades atuei no desenvolvimento de sistemas frontend corporativos com Angular, manutenção de sistemas embarcados, suporte à infraestrutura, automação industrial e inovação tecnológica. Essas experiências me permitiram expandir minha visão e aplicação prática em ambiente de missão crítica.", company_logo_url: "https://pamosyiiddwdjggdbkiq.supabase.co/storage/v1/object/public/portfolio/experiences/alta-mogiana.png", sort_order: 1 }
   ];
   await supabase.from('experiences').delete().neq('id', '00000000-0000-0000-0000-000000000000');
   const { error: expError } = await supabase.from('experiences').insert(experiences);
@@ -67,6 +67,7 @@ const seed = async () => {
   // 4. Technologies
   const techs = [
     { name: "React", category: "FRONTEND" },
+    { name: "Angular", category: "FRONTEND" },
     { name: "Javascript", category: "FRONTEND" },
     { name: "Typescript", category: "FRONTEND" },
     { name: "Node.Js", category: "BACKEND" },
@@ -100,8 +101,7 @@ const seed = async () => {
     { name: "C#", category: "BACKEND" },
     { name: "OpenCV", category: "TOOLS" },
     { name: "YOLO", category: "TOOLS" },
-    { name: "PLpgSQL", category: "DATABASE" },
-    { name: "Supabase", category: "DATABASE" }
+    { name: "PLpgSQL", category: "DATABASE" }
   ].map((t, i) => ({ ...t, slug: slugify(t.name), sort_order: i }));
 
   const { error: techError } = await supabase.from('technologies').upsert(techs, { onConflict: 'slug' });
@@ -145,7 +145,7 @@ const seed = async () => {
       repository_url: "https://github.com/Chiqueto/trainvy-frontend",
       cover_image_url: "https://pamosyiiddwdjggdbkiq.supabase.co/storage/v1/object/public/portfolio/projects/covers/trainvy.png",
       sort_order: 1,
-      techs: ["Next.js", "Typescript", "React", "TailwindCSS", "Supabase", "PostgreSQL", "PLpgSQL"]
+      techs: ["Next.js", "Typescript", "React", "TailwindCSS", "PostgreSQL", "PLpgSQL"]
     },
     {
       title: "SetVision - AI Volleyball Tracking",

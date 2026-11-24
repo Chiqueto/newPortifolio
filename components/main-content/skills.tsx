@@ -1,6 +1,6 @@
 import SkillsCard from "../skills-card";
 import { DiGit, DiGithubBadge, DiJavascript, DiReact } from "react-icons/di";
-import { SiExpress, SiInsomnia, SiMongodb, SiPostman, SiSpringboot, SiSwagger, SiTypescript } from "react-icons/si";
+import { SiAngular, SiExpress, SiInsomnia, SiMongodb, SiPostman, SiSpringboot, SiSwagger, SiTypescript } from "react-icons/si";
 import { FaNodeJs } from "react-icons/fa";
 import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
 import { BiLogoPostgresql } from "react-icons/bi";
@@ -9,6 +9,7 @@ import { FaJava } from "react-icons/fa6";
 import { PiFigmaLogoFill } from "react-icons/pi";
 
 const iconMap: Record<string, { icon: any, color: string }> = {
+    angular: { icon: SiAngular, color: "text-red-500" },
     react: { icon: DiReact, color: "text-cyan-500" },
     javascript: { icon: DiJavascript, color: "text-yellow-500" },
     typescript: { icon: SiTypescript, color: "text-cyan-500" },

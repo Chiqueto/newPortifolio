@@ -31,6 +31,7 @@ async function run() {
     { name: "FastAPI", category: "BACKEND" },
     { name: "Three.js", category: "FRONTEND" },
     { name: "React Three Fiber", category: "FRONTEND" },
+    { name: "Angular", category: "FRONTEND" },
     { name: "Kotlin", category: "MOBILE" },
     { name: "WearOS", category: "MOBILE" },
     { name: "Docker", category: "TOOLS" },
@@ -42,8 +43,7 @@ async function run() {
     { name: "C#", category: "BACKEND" },
     { name: "OpenCV", category: "TOOLS" },
     { name: "YOLO", category: "TOOLS" },
-    { name: "PLpgSQL", category: "DATABASE" },
-    { name: "Supabase", category: "DATABASE" }
+    { name: "PLpgSQL", category: "DATABASE" }
   ].map((t) => ({ ...t, slug: slugify(t.name) }));
 
   for (const t of additionalTechs) {
@@ -90,7 +90,7 @@ async function run() {
       repository_url: "https://github.com/Chiqueto/trainvy-frontend",
       cover_image_url: null,
       sort_order: 1,
-      techs: ["Next.js", "Typescript", "React", "TailwindCSS", "Supabase", "PostgreSQL", "PLpgSQL"]
+      techs: ["Next.js", "Typescript", "React", "TailwindCSS", "PostgreSQL", "PLpgSQL"]
     },
     {
       title: "SetVision - AI Volleyball Tracking",

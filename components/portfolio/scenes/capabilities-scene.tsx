@@ -57,6 +57,7 @@ export function CapabilitiesScene({ technologies = [] }: CapabilitiesSceneProps)
       icon: Layout,
       items: frontendTech.length > 0 ? frontendTech : [
         { name: "React" },
+        { name: "Angular" },
         { name: "Next.js" },
         { name: "TypeScript" },
         { name: "JavaScript" },
@@ -108,8 +109,8 @@ export function CapabilitiesScene({ technologies = [] }: CapabilitiesSceneProps)
       icon: Sparkles,
       items: [
         { name: "OpenAI / Gemini APIs" },
-        { name: "Supabase" },
         { name: "Asaas / Stripe" },
+        { name: "Cloudflare R2" },
         { name: "Push Notifications" },
       ],
       color: "#D65F67",

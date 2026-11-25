@@ -15,13 +15,13 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
-          response=$(curl -s -o /dev/null -w "%{http_code}" \
-            -X GET "${SUPABASE_URL}/rest/v1/?select=count" \
-            -H "apikey: ${SUPABASE_ANON_KEY}" \
-            -H "Authorization: Bearer ${SUPABASE_ANON_KEY}")
+          response=$(curl -s -o /tmp/supabase_ping.txt -w "%{http_code}" \
+            -X GET "${SUPABASE_URL}/rest/v1/projects?select=id&limit=1" \
+            -H "apikey: ${SUPABASE_ANON_KEY}")
           echo "Response status: $response"
           if [ "$response" -ne 200 ]; then
             echo "::warning::Supabase ping returned status $response"
+            cat /tmp/supabase_ping.txt
             exit 1
           fi
           echo "✅ Supabase is alive!"
